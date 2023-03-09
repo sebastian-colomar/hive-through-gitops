@@ -4,18 +4,18 @@ metadata:
   name: ocp
   namespace: ocp
 spec:
-  clusterName: ocp
-  clusterNamespace: ocp
+  applicationManager:
+    enabled: true
+  certPolicyController:
+    enabled: true
   clusterLabels:
     cloud: Amazon
     vendor: OpenShift
-  applicationManager:
+  clusterName: ocp
+  clusterNamespace: ocp
+  iamPolicyController:
     enabled: true
   policyController:
     enabled: true
   searchCollector:
-    enabled: true
-  certPolicyController:
-    enabled: true
-  iamPolicyController:
     enabled: true
