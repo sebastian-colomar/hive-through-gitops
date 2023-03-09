@@ -1,0 +1,21 @@
+apiVersion: cluster.open-cluster-management.io/v1
+kind: ManagedCluster
+metadata:
+  annotations:
+    open-cluster-management/created-via: hive
+  name: ocp
+  finalizers:
+    - cluster.open-cluster-management.io/api-resource-cleanup
+    - managedcluster-import-controller.open-cluster-management.io/cleanup
+    - >-
+      managedcluster-import-controller.open-cluster-management.io/manifestwork-cleanup
+    - managedclusterinfo.finalizers.open-cluster-management.io
+    - open-cluster-management.io/managedclusterrole
+  labels:
+    name: ocp
+    cloud: Amazon
+    region: ap-south-1
+    vendor: OpenShift
+    cluster.open-cluster-management.io/clusterset: managed
+spec:
+  hubAcceptsClient: true
