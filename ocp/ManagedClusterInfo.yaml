@@ -1,0 +1,12 @@
+kind: ManagedClusterInfo
+apiVersion: internal.open-cluster-management.io/v1beta1
+metadata:
+  labels:
+    app.kubernetes.io/instance: ocp
+    cloud: Amazon
+    cluster.open-cluster-management.io/clusterset: managed
+    name: ocp
+    region: ap-south-1
+    vendor: OpenShift
+  name: ocp
+  namespace: ocp
