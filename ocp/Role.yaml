@@ -1,12 +1,12 @@
-kind: Role
 apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
 metadata:
   name: ocp
   namespace: ocp
 rules:
-  - verbs:
-      - '*'
-    apiGroups:
+  - apiGroups:
       - '*'
     resources:
+      - '*'
+    verbs:
       - '*'
