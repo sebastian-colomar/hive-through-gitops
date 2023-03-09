@@ -1,0 +1,23 @@
+apiVersion: hive.openshift.io/v1
+kind: MachinePool
+metadata:
+  name: ocp-infra
+  namespace: ocp
+spec:
+  clusterDeploymentRef:
+    name: ocp
+  labels:
+    node-role.kubernetes.io/infra: ""
+  name: infra
+  platform:
+    aws:
+      rootVolume:
+        iops: 2000
+        size: 100
+        type: io1
+      type: t3a.large
+  replicas: 3
+  taints:
+    - key: node-role.kubernetes.io/infra
+      effect: NoSchedule
+  
