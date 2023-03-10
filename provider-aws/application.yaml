@@ -1,14 +1,14 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: ocp
+  name: provider-aws-ocp
 spec:
   destination:
     name: ''
-    namespace: ocp
+    namespace: provider-aws-ocp
     server: 'https://kubernetes.default.svc'
   source:
-    path: ocp
+    path: provider-aws/ocp
     repoURL: 'git@github.com:academiaonline-org/hive-through-gitops.git'
     targetRevision: HEAD
   project: default

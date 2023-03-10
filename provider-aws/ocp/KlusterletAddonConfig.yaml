@@ -1,8 +1,8 @@
 apiVersion: agent.open-cluster-management.io/v1
 kind: KlusterletAddonConfig
 metadata:
-  name: ocp
-  namespace: ocp
+  name: provider-aws-ocp
+  namespace: provider-aws-ocp
 spec:
   applicationManager:
     enabled: true
@@ -11,8 +11,8 @@ spec:
   clusterLabels:
     cloud: Amazon
     vendor: OpenShift
-  clusterName: ocp
-  clusterNamespace: ocp
+  clusterName: provider-aws-ocp
+  clusterNamespace: provider-aws-ocp
   iamPolicyController:
     enabled: true
   policyController:

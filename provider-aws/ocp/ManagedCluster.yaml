@@ -13,9 +13,9 @@ metadata:
   labels:
     cloud: Amazon
     cluster.open-cluster-management.io/clusterset: managed
-    name: ocp
+    name: provider-aws-ocp
     region: ap-south-1
     vendor: OpenShift
-  name: ocp
+  name: provider-aws-ocp
 spec:
   hubAcceptsClient: true

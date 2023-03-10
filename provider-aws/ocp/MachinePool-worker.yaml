@@ -1,11 +1,11 @@
 apiVersion: hive.openshift.io/v1
 kind: MachinePool
 metadata:
-  name: ocp-worker
-  namespace: ocp
+  name: provider-aws-ocp-worker
+  namespace: provider-aws-ocp
 spec:
   clusterDeploymentRef:
-    name: ocp
+    name: provider-aws-ocp
   name: worker
   platform:
     aws:
