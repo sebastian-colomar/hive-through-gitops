@@ -10,25 +10,25 @@ metadata:
     hive.openshift.io/cluster-region: ap-south-1
     region: ap-south-1
     vendor: OpenShift
-  name: ocp
-  namespace: ocp
+  name: provider-aws-ocp-1
+  namespace: provider-aws-ocp-1
 spec:
   baseDomain: sebastian-colomar.com
-  clusterName: ocp
+  clusterName: provider-aws-ocp-1
   controlPlaneConfig:
     servingCertificates: {}
   installAttemptsLimit: 1
   platform:
     aws:
       credentialsSecretRef:
-        name: ocp-aws-creds
+        name: provider-aws-ocp-1-aws-creds
       region: ap-south-1
   provisioning:
     imageSetRef:
       name: img4.12.6-multi-appsub
     installConfigSecretRef:
-      name: ocp-install-config
+      name: provider-aws-ocp-1-install-config
     sshPrivateKeySecretRef:
-      name: ocp-ssh-private-key
+      name: provider-aws-ocp-1-ssh-private-key
   pullSecretRef:
-    name: ocp-pull-secret
+    name: provider-aws-ocp-1-pull-secret
