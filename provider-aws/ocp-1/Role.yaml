@@ -1,8 +1,8 @@
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
-  name: provider-aws-ocp
-  namespace: provider-aws-ocp
+  name: provider-aws-ocp-1
+  namespace: provider-aws-ocp-1
 rules:
   - apiGroups:
       - '*'

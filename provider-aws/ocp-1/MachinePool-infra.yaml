@@ -2,10 +2,10 @@ apiVersion: hive.openshift.io/v1
 kind: MachinePool
 metadata:
   name: providers-aws-ocp-infra
-  namespace: provider-aws-ocp
+  namespace: provider-aws-ocp-1
 spec:
   clusterDeploymentRef:
-    name: provider-aws-ocp
+    name: provider-aws-ocp-1
   labels:
     node-role.kubernetes.io/infra: ""
   name: infra

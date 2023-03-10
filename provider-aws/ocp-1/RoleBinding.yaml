@@ -1,12 +1,12 @@
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
-  name: provider-aws-ocp
-  namespace: provider-aws-ocp
+  name: provider-aws-ocp-1
+  namespace: provider-aws-ocp-1
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
-  name: provider-aws-ocp
+  name: provider-aws-ocp-1
 subjects:
   - kind: ServiceAccount
     name: openshift-gitops-argocd-application-controller
