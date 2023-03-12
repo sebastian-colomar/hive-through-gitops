@@ -5,7 +5,7 @@ metadata:
     - hive.openshift.io/deprovision
   labels:
     cloud: AWS
-    cluster.open-cluster-management.io/clusterset: managed
+    cluster.open-cluster-management.io/clusterset: default
     hive.openshift.io/cluster-platform: aws
     hive.openshift.io/cluster-region: ap-south-1
     region: ap-south-1
@@ -24,10 +24,10 @@ spec:
         name: provider-aws-ocp-1-aws-creds
       region: ap-south-1
   provisioning:
-    imageSetRef:
-      name: img4.12.6-multi-appsub
     installConfigSecretRef:
       name: provider-aws-ocp-1-install-config
+    imageSetRef:
+      name: img4.12.6-multi-appsub
     sshPrivateKeySecretRef:
       name: provider-aws-ocp-1-ssh-private-key
   pullSecretRef:

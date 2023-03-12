@@ -3,9 +3,28 @@ kind: ClusterRole
 metadata:
   name: provider-aws-ocp-1
 rules:
-  - apiGroups:
-      - '*'
-    resources:
-      - '*'
-    verbs:
-      - '*'
+- apiGroups:
+  - cluster.open-cluster-management.io
+  resources:
+  - "*"
+  verbs:
+  - create
+  - delete
+- apiGroups:
+  - cluster.open-cluster-management.io
+  resources:
+  - "*"
+  resourceNames:
+  - provider-aws-ocp-1
+  verbs:
+  - create
+  - delete
+  - patch
+- apiGroups:
+  - register.open-cluster-management.io
+  resources:
+  - "*"
+  resourceNames:
+  - provider-aws-ocp-1
+  verbs:
+  - update

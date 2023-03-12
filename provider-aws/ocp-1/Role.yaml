@@ -5,8 +5,31 @@ metadata:
   namespace: provider-aws-ocp-1
 rules:
   - apiGroups:
-      - '*'
+      - ""
     resources:
-      - '*'
+      - secrets
     verbs:
-      - '*'
+      - create
+      - delete
+      - patch
+  - apiGroups:
+      - hive.openshift.io
+    resources:
+      - clusterdeployments
+      - machinepools
+    verbs:
+      - create
+      - delete
+  - apiGroups:
+      - internal.open-cluster-management.io
+    resources:
+      - managedclusterinfos
+    verbs:
+      - patch
+  - apiGroups:
+      - agent.open-cluster-management.io
+    resources:
+      - klusterletaddonconfigs
+    verbs:
+      - create
+      - delete

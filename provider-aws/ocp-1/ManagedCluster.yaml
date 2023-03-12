@@ -5,14 +5,13 @@ metadata:
     open-cluster-management/created-via: hive
   finalizers:
     - cluster.open-cluster-management.io/api-resource-cleanup
-    - managedcluster-import-controller.open-cluster-management.io/cleanup
-    - >-
-      managedcluster-import-controller.open-cluster-management.io/manifestwork-cleanup
     - managedclusterinfo.finalizers.open-cluster-management.io
+    - managedcluster-import-controller.open-cluster-management.io/cleanup
+    - managedcluster-import-controller.open-cluster-management.io/manifestwork-cleanup
     - open-cluster-management.io/managedclusterrole
   labels:
     cloud: Amazon
-    cluster.open-cluster-management.io/clusterset: managed
+    cluster.open-cluster-management.io/clusterset: default
     name: provider-aws-ocp-1
     region: ap-south-1
     vendor: OpenShift

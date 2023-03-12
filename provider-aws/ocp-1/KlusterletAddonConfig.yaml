@@ -8,11 +8,11 @@ spec:
     enabled: true
   certPolicyController:
     enabled: true
+  clusterName: provider-aws-ocp-1
+  clusterNamespace: provider-aws-ocp-1
   clusterLabels:
     cloud: Amazon
     vendor: OpenShift
-  clusterName: provider-aws-ocp-1
-  clusterNamespace: provider-aws-ocp-1
   iamPolicyController:
     enabled: true
   policyController:

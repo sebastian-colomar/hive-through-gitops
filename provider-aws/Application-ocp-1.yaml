@@ -4,7 +4,6 @@ metadata:
   name: provider-aws-ocp-1
 spec:
   destination:
-    name: ''
     namespace: provider-aws-ocp-1
     server: 'https://kubernetes.default.svc'
   source:

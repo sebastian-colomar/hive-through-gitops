@@ -1,7 +1,7 @@
 apiVersion: hive.openshift.io/v1
 kind: MachinePool
 metadata:
-  name: providers-aws-ocp-infra
+  name: provider-aws-ocp-1-infra
   namespace: provider-aws-ocp-1
 spec:
   clusterDeploymentRef:
@@ -18,6 +18,5 @@ spec:
       type: t3a.large
   replicas: 3
   taints:
-    - key: node-role.kubernetes.io/infra
-      effect: NoSchedule
-  
+    - effect: NoSchedule
+      key: node-role.kubernetes.io/infra
