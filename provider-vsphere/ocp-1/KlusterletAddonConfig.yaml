@@ -1,0 +1,26 @@
+apiVersion: agent.open-cluster-management.io/v1
+kind: KlusterletAddonConfig
+metadata:
+  name: provider-vsphere-ocp-1
+  namespace: provider-vsphere-ocp-1
+spec:
+  applicationManager:
+    enabled: true
+    proxyPolicy: OCPGlobalProxy
+  certPolicyController:
+    enabled: true
+    proxyPolicy: OCPGlobalProxy
+  clusterName: provider-vsphere-ocp-1
+  clusterNamespace: provider-vsphere-ocp-1
+  clusterLabels:
+    cloud: vSphere
+    vendor: OpenShift
+  iamPolicyController:
+    enabled: true
+    proxyPolicy: OCPGlobalProxy
+  policyController:
+    enabled: true
+    proxyPolicy: OCPGlobalProxy
+  searchCollector:
+    enabled: true
+    proxyPolicy: OCPGlobalProxy

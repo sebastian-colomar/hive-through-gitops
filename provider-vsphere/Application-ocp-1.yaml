@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: provider-vsphere-ocp-1
+spec:
+  destination:
+    namespace: provider-vsphere-ocp-1
+    server: 'https://kubernetes.default.svc'
+  source:
+    path: provider-vsphere/ocp-1
+    repoURL: 'git@github.com:academiaonline-org/hive-through-gitops.git'
+    targetRevision: HEAD
+  project: default
+  syncPolicy:
+    automated:
+      prune: true
+    syncOptions:
+      - CreateNamespace=true

@@ -1,0 +1,36 @@
+apiVersion: hive.openshift.io/v1
+kind: ClusterDeployment
+metadata:
+  labels:
+    cloud: vSphere
+    cluster.open-cluster-management.io/clusterset: default
+    vendor: OpenShift
+  name: provider-vsphere-ocp-1
+  namespace: provider-vsphere-ocp-1
+spec:
+  baseDomain: sebastian-colomar.com
+  clusterName: provider-vsphere-ocp-1
+  controlPlaneConfig:
+    servingCertificates: {}
+  installAttemptsLimit: 1
+  platform:
+    vsphere:
+      certificatesSecretRef:
+        name: provider-vsphere-ocp-1-vsphere-certs
+      cluster: xxx
+      credentialsSecretRef:
+        name: provider-vsphere-ocp-1-vsphere-creds
+      datacenter: xxx
+      defaultDatastore: xxx
+      folder: xxx
+      network: xxx
+      vCenter: xxx
+  provisioning:
+    imageSetRef:
+      name: img4.12.6-multi-appsub
+    installConfigSecretRef:
+      name: provider-vsphere-ocp-1-install-config
+    sshPrivateKeySecretRef:
+      name: provider-vsphere-ocp-1-ssh-private-key
+  pullSecretRef:
+    name: provider-vsphere-ocp-1-pull-secret
