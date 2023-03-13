@@ -13,7 +13,7 @@ metadata:
   name: provider-aws-ocp-1
   namespace: provider-aws-ocp-1
 spec:
-  baseDomain: sebastian-colomar.com
+  baseDomain: xxx
   clusterName: provider-aws-ocp-1
   controlPlaneConfig:
     servingCertificates: {}

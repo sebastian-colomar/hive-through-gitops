@@ -8,7 +8,7 @@ metadata:
   name: provider-vsphere-ocp-1
   namespace: provider-vsphere-ocp-1
 spec:
-  baseDomain: sebastian-colomar.com
+  baseDomain: xxx
   clusterName: provider-vsphere-ocp-1
   controlPlaneConfig:
     servingCertificates: {}
