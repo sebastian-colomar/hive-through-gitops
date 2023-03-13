@@ -13,6 +13,13 @@ rules:
       - delete
       - patch
   - apiGroups:
+      - agent.open-cluster-management.io
+    resources:
+      - klusterletaddonconfigs
+    verbs:
+      - create
+      - delete
+  - apiGroups:
       - hive.openshift.io
     resources:
       - clusterdeployments
@@ -25,11 +32,6 @@ rules:
     resources:
       - managedclusterinfos
     verbs:
-      - patch
-  - apiGroups:
-      - agent.open-cluster-management.io
-    resources:
-      - klusterletaddonconfigs
-    verbs:
       - create
       - delete
+      - patch
