@@ -23,7 +23,7 @@ rules:
 - apiGroups:
   - register.open-cluster-management.io
   resources:
-  - "*"
+  - managedclusters/accept
   resourceNames:
   - provider-aws-ocp-1
   verbs:
