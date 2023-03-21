@@ -3,10 +3,9 @@ kind: ManagedClusterInfo
 metadata:
   labels:
     app.kubernetes.io/instance: provider-vsphere-ocp-1
-    cloud: Amazon
+    cloud: vSphere
     cluster.open-cluster-management.io/clusterset: default
     name: provider-vsphere-ocp-1
-    region: ap-south-1
     vendor: OpenShift
   name: provider-vsphere-ocp-1
   namespace: provider-vsphere-ocp-1
