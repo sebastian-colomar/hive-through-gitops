@@ -7,7 +7,7 @@ spec:
   generators:
   - list:
       elements:
-        - cluster: ocpl-dc2
+        - cluster: ocp-1
   template:
     metadata:
       labels:
