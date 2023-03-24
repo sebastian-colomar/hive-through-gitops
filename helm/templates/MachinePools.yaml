@@ -1,0 +1,30 @@
+{{- if .Values.machinepools }}
+{{- range $v := .Values.machinepools -}}
+---
+apiVersion: hive.openshift.io/v1
+kind: MachinePool
+metadata:
+  name: "{{ $.Values.cluster.name }}-{{ $v.name }}"
+  namespace: {{ $.Values.cluster.name }}
+spec:
+  clusterDeploymentRef:
+    name: {{ $.Values.cluster.name }}
+{{- if $v.labels }}
+  labels:
+{{ toYaml $v.labels | indent 4 }}
+{{- end }}
+  name: {{ $v.name }}
+  platform:
+    vsphere:
+      coresPerSocket: {{ $v.coresPerSocket}}
+      cpus: {{ $v.cpus }}
+      memoryMB: {{ $v.memoryMB }}
+      osDisk:
+        diskSizeGB: {{ $v.diskSizeGB }}
+  replicas: {{ $v.replicas }}
+{{- if $v.taints }}
+  taints:
+{{ toYaml $v.taints | indent 4 }}
+{{- end }}
+{{ end }}
+{{- end }}
