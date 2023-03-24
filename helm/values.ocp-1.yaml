@@ -1,0 +1,39 @@
+cluster:
+  name: ocp-1
+  baseDomain: xxx
+  clusterset: xxx
+  image: xxx
+  pullSecret: xxx
+  sshPrivateKey: xxx
+  installConfig: xxx
+vsphere:
+  vCenter: xxx
+  cluster: xxx
+  datacenter: xxx
+  folder: xxx
+  defaultDatastore: xxx
+  network: xxx
+  username: xxx
+  password: xxx
+  cacert: xxx
+machinepools:
+  - name: worker
+    coresPerSocket: 2
+    cpus: 4
+    memoryMB: 16384
+    diskSizeGB: 120
+    replicas: 3
+  - name: infra
+    coresPerSocket: 2
+    cpus: 4
+    memoryMB: 16384
+    diskSizeGB: 120
+    replicas: 3
+    labels:
+      node-role.kubernetes.io/infra: ""
+    taints:
+    - effect: NoSchedule
+      key: node-role.kubernetes.io/infra
+gitops:
+  name: openshift-gitops
+  namespace: openshift-gitops
