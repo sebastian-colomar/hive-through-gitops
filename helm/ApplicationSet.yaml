@@ -20,7 +20,7 @@ spec:
       project: default
       source:
         path: helm
-        repoURL: git@github.com:academiaonline-org/hive-through-gitops.git
+        repoURL: git@github.com:sebastian-colomar/hive-through-gitops.git
         targetRevision: HEAD
         helm:
           valueFiles:

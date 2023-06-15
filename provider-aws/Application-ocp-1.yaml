@@ -8,7 +8,7 @@ spec:
     server: 'https://kubernetes.default.svc'
   source:
     path: provider-aws/ocp-1
-    repoURL: 'git@github.com:academiaonline-org/hive-through-gitops.git'
+    repoURL: 'git@github.com:sebastian-colomar/hive-through-gitops.git'
     targetRevision: HEAD
   project: default
   syncPolicy:
