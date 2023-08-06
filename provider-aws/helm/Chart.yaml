@@ -1,0 +1,6 @@
+apiVersion: v2
+name: hive
+description: Use Hive through GitOps to create OCP clusters
+type: application
+version: 0.0.1
+appVersion: "v1.0"

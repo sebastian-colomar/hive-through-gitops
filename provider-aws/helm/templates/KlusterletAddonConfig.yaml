@@ -1,0 +1,26 @@
+apiVersion: agent.open-cluster-management.io/v1
+kind: KlusterletAddonConfig
+metadata:
+  name: {{ .Values.cluster.name }}
+  namespace: {{ .Values.cluster.name }}
+spec:
+  applicationManager:
+    enabled: true
+    #proxyPolicy: OCPGlobalProxy
+  certPolicyController:
+    enabled: true
+    #proxyPolicy: OCPGlobalProxy
+  clusterName: {{ .Values.cluster.name }}
+  clusterNamespace: {{ .Values.cluster.name }}
+  clusterLabels:
+    cloud: {{ .Values.cluster.cloud }}
+    vendor: {{ .Values.cluster.vendor }}
+  iamPolicyController:
+    enabled: true
+    #proxyPolicy: OCPGlobalProxy
+  policyController:
+    enabled: true
+    #proxyPolicy: OCPGlobalProxy
+  searchCollector:
+    enabled: true
+    #proxyPolicy: OCPGlobalProxy
