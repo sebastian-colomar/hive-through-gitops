@@ -11,7 +11,7 @@ spec:
   clusterName: provider-aws-ocp-1
   clusterNamespace: provider-aws-ocp-1
   clusterLabels:
-    cloud: Amazon
+    cloud: AWS
     vendor: OpenShift
   iamPolicyController:
     enabled: true
