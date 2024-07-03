@@ -3,7 +3,7 @@ kind: ManagedClusterInfo
 metadata:
   labels:
     app.kubernetes.io/instance: provider-aws-ocp-1
-    cloud: Amazon
+    cloud: AWS
     cluster.open-cluster-management.io/clusterset: default
     name: provider-aws-ocp-1
     region: ap-south-1
