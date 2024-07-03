@@ -12,10 +12,10 @@ spec:
   platform:
     aws:
       rootVolume:
-        iops: 2000
+        iops: 3000
         size: 100
-        type: io1
-      type: t3a.large
+        type: gp3
+      type: m6a.large
   replicas: 3
   taints:
     - effect: NoSchedule
