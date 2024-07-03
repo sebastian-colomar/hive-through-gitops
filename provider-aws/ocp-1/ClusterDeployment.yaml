@@ -24,10 +24,10 @@ spec:
         name: provider-aws-ocp-1-aws-creds
       region: ap-south-1
   provisioning:
+    imageSetRef: #quay.io/openshift-release-dev/ocp-release:4.12.16-multi
+      name: img4.12.6-multi-appsub
     installConfigSecretRef:
       name: provider-aws-ocp-1-install-config
-    imageSetRef:
-      name: img4.12.6-multi-appsub
     sshPrivateKeySecretRef:
       name: provider-aws-ocp-1-ssh-private-key
   pullSecretRef:
