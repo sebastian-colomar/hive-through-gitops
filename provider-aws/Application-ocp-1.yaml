@@ -12,6 +12,7 @@ spec:
     targetRevision: HEAD
   project: default
   syncPolicy:
-    automated: null
+    automated:
+      prune: true
     syncOptions:
       - CreateNamespace=true
