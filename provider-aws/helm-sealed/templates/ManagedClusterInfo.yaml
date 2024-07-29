@@ -1,0 +1,12 @@
+apiVersion: internal.open-cluster-management.io/v1beta1
+kind: ManagedClusterInfo
+metadata:
+  labels:
+    app.kubernetes.io/instance: {{ .Values.cluster.name }}
+    cloud: {{ .Values.cluster.cloud }}
+    cluster.open-cluster-management.io/clusterset: {{ .Values.cluster.clusterset }}
+    name: {{ .Values.cluster.name }}
+    region: {{ .Values.aws.region }}
+    vendor: {{ .Values.cluster.vendor }}
+  name: {{ .Values.cluster.name }}
+  namespace: {{ .Values.cluster.name }}

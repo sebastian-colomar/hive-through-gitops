@@ -1,0 +1,20 @@
+apiVersion: cluster.open-cluster-management.io/v1
+kind: ManagedCluster
+metadata:
+  annotations:
+    open-cluster-management/created-via: hive
+  finalizers:
+  - cluster.open-cluster-management.io/api-resource-cleanup
+  - managedclusterinfo.finalizers.open-cluster-management.io
+  - managedcluster-import-controller.open-cluster-management.io/cleanup
+  - managedcluster-import-controller.open-cluster-management.io/manifestwork-cleanup
+  - open-cluster-management.io/managedclusterrole
+  labels:
+    cloud: {{ .Values.cluster.cloud }}
+    cluster.open-cluster-management.io/clusterset: {{ .Values.cluster.clusterset }}
+    name: {{ .Values.cluster.name }}
+    region: {{ .Values.aws.region }}
+    vendor: {{ .Values.cluster.vendor }}
+  name: {{ .Values.cluster.name }}
+spec:
+  hubAcceptsClient: true
