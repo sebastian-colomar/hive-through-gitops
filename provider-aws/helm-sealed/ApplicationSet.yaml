@@ -1,29 +1,29 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: hive-through-gitops
+  name: cluster-deployments
   namespace: openshift-gitops
 spec:
   generators:
   - list:
       elements:
-      - cluster: helm-sealed-1
+      - cluster: '1'
   syncPolicy:
     preserveResourcesOnDeletion: true
   template:
     metadata:
       labels:
-        applicationset: hive-through-gitops
-      name: provider-aws-{{ cluster }}
+        applicationset: cluster-deployments
+      name: provider-aws-helm-sealed-{{ cluster }}
     spec:
       destination:
-        namespace: provider-aws-{{ cluster }}
+        namespace: provider-aws-helm-{{ cluster }}
         server: 'https://kubernetes.default.svc'
       project: default
       source:
         helm:
           valueFiles:
-          - values.{{ cluster }}.yaml
+          - values.helm-sealed-{{ cluster }}.yaml
         path: provider-aws/helm-sealed
         repoURL: git@github.com:sebastian-colomar/hive-through-gitops.git
         targetRevision: HEAD
