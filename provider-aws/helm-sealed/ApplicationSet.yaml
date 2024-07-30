@@ -20,7 +20,7 @@ spec:
       project: default
       source:
         path: provider-aws/helm-sealed
-        repoURL: git@github.com:sebastian-colomar/hive.git
+        repoURL: git@github.com:sebastian-colomar/hive-through-gitops.git
         targetRevision: HEAD
         helm:
           valueFiles:
