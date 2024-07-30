@@ -17,7 +17,7 @@ spec:
       name: provider-aws-helm-sealed-{{ cluster }}
     spec:
       destination:
-        namespace: provider-aws-helm-{{ cluster }}
+        namespace: provider-aws-helm-sealed-{{ cluster }}
         server: 'https://kubernetes.default.svc'
       project: default
       source:
