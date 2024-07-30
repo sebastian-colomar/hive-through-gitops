@@ -25,7 +25,7 @@ spec:
           valueFiles:
           - values.helm-{{ cluster }}.yaml
         path: provider-aws/helm
-        repoURL: git@github.com:sebastian-colomar/hive.git
+        repoURL: git@github.com:sebastian-colomar/hive-through-gitops.git
         targetRevision: HEAD
       syncPolicy:
         automated:
