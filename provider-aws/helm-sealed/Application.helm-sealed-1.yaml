@@ -12,7 +12,7 @@ spec:
       valueFiles:
       - values.helm-sealed-1.yaml
     path: provider-aws/helm-sealed
-    repoURL: 'git@github.com:sebastian-colomar/hive.git'
+    repoURL: 'git@github.com:sebastian-colomar/hive-through-gitops.git'
     targetRevision: HEAD
   syncPolicy:
     automated:
