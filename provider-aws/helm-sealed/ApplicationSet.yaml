@@ -7,14 +7,14 @@ spec:
   generators:
   - list:
       elements:
-      - cluster: helm-1
+      - cluster: helm-sealed-1
   syncPolicy:
     preserveResourcesOnDeletion: true
   template:
     metadata:
       labels:
-        applicationset: cluster-deployments
-      name: 'cluster-deployment-{{ cluster }}'
+        applicationset: hive-through-gitops
+      name: 'hive-through-gitops-{{ cluster }}'
     spec:
       destination:
         name: local-cluster
