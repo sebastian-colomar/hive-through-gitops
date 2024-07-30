@@ -14,7 +14,7 @@ spec:
     metadata:
       labels:
         applicationset: hive-through-gitops
-      name: 'hive-through-gitops-{{ cluster }}'
+      name: provider-aws-{{ cluster }}
     spec:
       destination:
         name: local-cluster
