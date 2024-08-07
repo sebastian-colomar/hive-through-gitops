@@ -23,7 +23,9 @@ sudo cp kubeseal /usr/local/bin/
 for secret in secrets.${clusterName}/Secret-*.yaml;do name=$(echo ${secret}|cut -d/ -f2);kubeseal -f ${secret} -w templates/Sealed${name};done
 ```
 
-## Create the necessary role binding
+## Create the necessary role and role binding
 ```
 oc create rolebinding openshift-gitops-argocd-application-controller --namespace=${clusterName} --role=openshift-gitops-argocd-application-controller --serviceaccount=openshift-gitops:openshift-gitops-argocd-application-controller
+
+create role openshift-gitops-argocd-application-controller --namespace=${clusterName} --verb=create --resource=applications --api-group=argoproj.io
 ```
