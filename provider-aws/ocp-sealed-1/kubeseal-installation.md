@@ -27,5 +27,5 @@ for secret in secrets.${clusterName}/Secret-*.yaml;do name=$(echo ${secret}|cut 
 ```
 oc create rolebinding openshift-gitops-argocd-application-controller --namespace=${clusterName} --role=openshift-gitops-argocd-application-controller --serviceaccount=openshift-gitops:openshift-gitops-argocd-application-controller
 
-create role openshift-gitops-argocd-application-controller --namespace=${clusterName} --verb=create --resource=applications --api-group=argoproj.io
+oc create role openshift-gitops-argocd-application-controller --namespace=${clusterName} --verb=create --resource=applications --api-group=argoproj.io
 ```
