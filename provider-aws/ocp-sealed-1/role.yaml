@@ -4,9 +4,10 @@ metadata:
   name: openshift-gitops-argocd-application-controller
   namespace: ocp-sealed-1
 rules:
-  - verbs:
-      - create
-    apiGroups:
-      - argoproj.io
-    resources:
-      - applications
+- verbs:
+  - create
+  - delete
+  apiGroups:
+  - argoproj.io
+  resources:
+  - applications
