@@ -1,0 +1,30 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: ocp-sealed-1
+rules:
+- apiGroups:
+  - cluster.open-cluster-management.io
+  resources:
+  - "*"
+  verbs:
+  - create
+  - delete
+- apiGroups:
+  - cluster.open-cluster-management.io
+  resources:
+  - "*"
+  resourceNames:
+  - ocp-sealed-1
+  verbs:
+  - create
+  - delete
+  - patch
+- apiGroups:
+  - register.open-cluster-management.io
+  resources:
+  - managedclusters/accept
+  resourceNames:
+  - ocp-sealed-1
+  verbs:
+  - update

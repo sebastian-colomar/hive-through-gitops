@@ -1,0 +1,34 @@
+apiVersion: hive.openshift.io/v1
+kind: ClusterDeployment
+metadata:
+  finalizers:
+  - hive.openshift.io/deprovision
+  labels:
+    cloud: AWS
+    cluster.open-cluster-management.io/clusterset: default
+    hive.openshift.io/cluster-platform: aws
+    hive.openshift.io/cluster-region: ap-south-1
+    region: ap-south-1
+    vendor: OpenShift
+  name: ocp-sealed-1
+  namespace: ocp-sealed-1
+spec:
+  baseDomain: sebastian-colomar.com
+  clusterName: ocp-sealed-1
+  controlPlaneConfig:
+    servingCertificates: {}
+  installAttemptsLimit: 1
+  platform:
+    aws:
+      credentialsSecretRef:
+        name: ocp-sealed-1-aws-creds
+      region: ap-south-1
+  provisioning:
+    imageSetRef: #quay.io/openshift-release-dev/ocp-release:4.15.18-multi
+      name: img4.15.18-multi-appsub
+    installConfigSecretRef:
+      name: ocp-sealed-1-install-config
+    sshPrivateKeySecretRef:
+      name: ocp-sealed-1-ssh-private-key
+  pullSecretRef:
+    name: ocp-sealed-1-pull-secret

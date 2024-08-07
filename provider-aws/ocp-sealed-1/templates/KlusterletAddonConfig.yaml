@@ -1,0 +1,21 @@
+apiVersion: agent.open-cluster-management.io/v1
+kind: KlusterletAddonConfig
+metadata:
+  name: ocp-sealed-1
+  namespace: ocp-sealed-1
+spec:
+  applicationManager:
+    enabled: true
+  certPolicyController:
+    enabled: true
+  clusterName: ocp-sealed-1
+  clusterNamespace: ocp-sealed-1
+  clusterLabels:
+    cloud: AWS
+    vendor: OpenShift
+  iamPolicyController:
+    enabled: true
+  policyController:
+    enabled: true
+  searchCollector:
+    enabled: true

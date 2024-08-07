@@ -1,18 +1,19 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: provider-aws-ocp-1
+  name: ocp-sealed-1
 spec:
   destination:
-    namespace: provider-aws-ocp-1
+    namespace: ocp-sealed-1
     server: 'https://kubernetes.default.svc'
+  project: default
   source:
-    path: provider-aws/ocp-1
+    path: provider-aws/ocp-sealed-1
     repoURL: 'git@github.com:sebastian-colomar/hive-through-gitops.git'
     targetRevision: HEAD
-  project: default
   syncPolicy:
     automated:
       prune: true
+      selfHeal: false        
     syncOptions:
-      - CreateNamespace=true
+    - CreateNamespace=true

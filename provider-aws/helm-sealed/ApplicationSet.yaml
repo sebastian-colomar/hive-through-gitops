@@ -14,10 +14,10 @@ spec:
     metadata:
       labels:
         applicationset: cluster-deployments
-      name: provider-aws-helm-sealed-{{ cluster }}
+      name: helm-sealed-{{ cluster }}
     spec:
       destination:
-        namespace: provider-aws-helm-sealed-{{ cluster }}
+        namespace: helm-sealed-{{ cluster }}
         server: 'https://kubernetes.default.svc'
       project: default
       source:

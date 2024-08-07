@@ -1,0 +1,44 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: ocp-sealed-1
+  namespace: ocp-sealed-1
+rules:
+  - apiGroups:
+    - ""
+    resources:
+    - secrets
+    verbs:
+    - create
+    - delete
+    - patch
+  - apiGroups:
+    - agent.open-cluster-management.io
+    resources:
+    - klusterletaddonconfigs
+    verbs:
+    - create
+    - delete
+  - apiGroups:
+    - bitnami.com
+    resources:
+    - sealedsecrets
+    verbs:
+    - create
+    - delete      
+  - apiGroups:
+    - hive.openshift.io
+    resources:
+    - clusterdeployments
+    - machinepools
+    verbs:
+    - create
+    - delete
+  - apiGroups:
+    - internal.open-cluster-management.io
+    resources:
+    - managedclusterinfos
+    verbs:
+    - create
+    - delete
+    - patch

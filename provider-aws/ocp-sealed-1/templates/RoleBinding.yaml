@@ -1,0 +1,13 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: ocp-sealed-1
+  namespace: ocp-sealed-1
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: ocp-sealed-1
+subjects:
+  - kind: ServiceAccount
+    name: openshift-gitops-argocd-application-controller
+    namespace: openshift-gitops

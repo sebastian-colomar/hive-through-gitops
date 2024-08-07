@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: provider-aws-ocp-1
+spec:
+  destination:
+    namespace: provider-aws-ocp-1
+    server: 'https://kubernetes.default.svc'
+  project: default
+  source:
+    path: provider-aws/ocp-1/templates
+    repoURL: 'git@github.com:sebastian-colomar/hive-through-gitops.git'
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: false
+    syncOptions:
+      - CreateNamespace=true
