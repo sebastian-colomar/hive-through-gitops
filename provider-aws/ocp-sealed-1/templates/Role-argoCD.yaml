@@ -1,0 +1,12 @@
+kind: Role
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: openshift-gitops-argocd-application-controller
+  namespace: ocp-sealed-1
+rules:
+  - verbs:
+      - create
+    apiGroups:
+      - argoproj.io
+    resources:
+      - applications
