@@ -1,5 +1,9 @@
 ## Install the Helm Chart
 ```
+helm repo add bitnami https://charts.bitnami.com/bitnami
+
+helm repo update
+
 helm install sealed-secrets -n kube-system --set-string fullnameOverride=sealed-secrets-controller sealed-secrets/sealed-secrets
 ```
 
