@@ -4,7 +4,7 @@ helm repo add bitnami https://charts.bitnami.com/bitnami
 
 helm repo update
 
-helm install sealed-secrets -n kube-system --set-string fullnameOverride=sealed-secrets-controller sealed-secrets/sealed-secrets
+helm install sealed-secrets -n kube-system --set-string fullnameOverride=sealed-secrets-controller bitnami/sealed-secrets
 ```
 
 ## Fetch the latest sealed-secrets version using GitHub API
