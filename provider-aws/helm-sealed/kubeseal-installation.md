@@ -20,6 +20,9 @@ sudo cp kubeseal /usr/local/bin/
 
 ## Encrypt the secrets with Kubeseal
 ```
+clusterName=xxx
+```
+```
 for secret in secrets.${clusterName}/Secret-*.yaml;do name=$(echo ${secret}|cut -d/ -f2);kubeseal -f ${secret} -w templates/Sealed${name};done
 
 key=aws_access_key_id
