@@ -23,6 +23,8 @@ sudo cp kubeseal /usr/local/bin/
 clusterName=helm-sealed-1
 ```
 ```
+cd provider-aws/helm-sealed/
+
 for secret in secrets.${clusterName}/Secret-*.yaml;do name=$(echo ${secret}|cut -d/ -f2);kubeseal -f ${secret} -w templates/Sealed${name};done
 
 key=aws_access_key_id
