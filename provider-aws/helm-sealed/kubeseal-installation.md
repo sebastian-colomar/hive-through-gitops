@@ -20,7 +20,7 @@ sudo cp kubeseal /usr/local/bin/
 
 ## Encrypt the secrets with Kubeseal
 ```
-clusterName=xxx
+clusterName=helm-sealed-1
 ```
 ```
 for secret in secrets.${clusterName}/Secret-*.yaml;do name=$(echo ${secret}|cut -d/ -f2);kubeseal -f ${secret} -w templates/Sealed${name};done
