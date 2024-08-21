@@ -23,27 +23,25 @@ sudo cp kubeseal /usr/local/bin/
 clusterName=helm-sealed-1
 ```
 ```
-cd provider-aws/helm-sealed/
-
-for secret in secrets.${clusterName}/Secret-*.yaml;do name=$(echo ${secret}|cut -d/ -f2);kubeseal -f ${secret} -w templates/Sealed${name};done
+for secret in provider-aws/helm-sealed/secrets.${clusterName}/Secret-*.yaml;do name=$(echo ${secret}|cut -d/ -f4);kubeseal -f ${secret} -w provider-aws/helm-sealed/templates/Sealed${name};done
 
 key=aws_access_key_id
 keyId=${key}
-value=$(awk -F "${key}: " '{print $2}' templates/SealedSecret-*|grep .|sed 's/\//\\\//g');sed -i "s/${keyId}.*$/${keyId}: ${value}/" values.${clusterName}.yaml
+value=$(awk -F "${key}: " '{print $2}' provider-aws/helm-sealed/templates/SealedSecret-*|grep .|sed 's/\//\\\//g');sed -i "s/${keyId}.*$/${keyId}: ${value}/" provider-aws/helm-sealed/values.${clusterName}.yaml
 
 key=aws_secret_access_key
 keyId=${key}
-value=$(awk -F "${key}: " '{print $2}' templates/SealedSecret-*|grep .|sed 's/\//\\\//g');sed -i "s/${keyId}.*$/${keyId}: ${value}/" values.${clusterName}.yaml
+value=$(awk -F "${key}: " '{print $2}' provider-aws/helm-sealed/templates/SealedSecret-*|grep .|sed 's/\//\\\//g');sed -i "s/${keyId}.*$/${keyId}: ${value}/" provider-aws/helm-sealed/values.${clusterName}.yaml
 
 key=install-config.yaml
 keyId=installConfig
-value=$(awk -F "${key}: " '{print $2}' templates/SealedSecret-*|grep .|sed 's/\//\\\//g');sed -i "s/${keyId}.*$/${keyId}: ${value}/" values.${clusterName}.yaml
+value=$(awk -F "${key}: " '{print $2}' provider-aws/helm-sealed/templates/SealedSecret-*|grep .|sed 's/\//\\\//g');sed -i "s/${keyId}.*$/${keyId}: ${value}/" provider-aws/helm-sealed/values.${clusterName}.yaml
 
 key=.dockerconfigjson
 keyId=pullSecret
-value=$(awk -F "${key}: " '{print $2}' templates/SealedSecret-*|grep .|sed 's/\//\\\//g');sed -i "s/${keyId}.*$/${keyId}: ${value}/" values.${clusterName}.yaml
+value=$(awk -F "${key}: " '{print $2}' provider-aws/helm-sealed/templates/SealedSecret-*|grep .|sed 's/\//\\\//g');sed -i "s/${keyId}.*$/${keyId}: ${value}/" provider-aws/helm-sealed/values.${clusterName}.yaml
 
 key=ssh-privatekey
 keyId=sshPrivateKey
-value=$(awk -F "${key}: " '{print $2}' templates/SealedSecret-*|grep .|sed 's/\//\\\//g');sed -i "s/${keyId}.*$/${keyId}: ${value}/" values.${clusterName}.yaml
+value=$(awk -F "${key}: " '{print $2}' provider-aws/helm-sealed/templates/SealedSecret-*|grep .|sed 's/\//\\\//g');sed -i "s/${keyId}.*$/${keyId}: ${value}/" provider-aws/helm-sealed/values.${clusterName}.yaml
 ```
