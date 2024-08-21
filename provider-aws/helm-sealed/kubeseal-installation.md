@@ -21,27 +21,37 @@ sudo cp kubeseal /usr/local/bin/
 ## Encrypt the secrets with Kubeseal
 ```
 clusterName=helm-sealed-1
+
+location=provider-aws/helm-sealed
 ```
 ```
-for secret in provider-aws/helm-sealed/secrets.${clusterName}/Secret-*.yaml;do name=$(echo ${secret}|cut -d/ -f4);kubeseal -f ${secret} -w provider-aws/helm-sealed/secrets.${clusterName}/Sealed${name};done
+for secret in ${location}/secrets.${clusterName}/Secret-*.yaml;do name=$(echo ${secret}|awk -F"${location}/secrets.${clusterName}/" '{print $2}');kubeseal -f ${secret} -w ${location}/secrets.${clusterName}/Sealed${name};done
 
 key=aws_access_key_id
 keyId=${key}
-value=$(awk -F "${key}: " '{print $2}' provider-aws/helm-sealed/secrets.${clusterName}/SealedSecret-*|grep .|sed 's/\//\\\//g');sed -i "s/${keyId}.*$/${keyId}: ${value}/" provider-aws/helm-sealed/values.${clusterName}.yaml
+value=$(awk -F "${key}: " '{print $2}' ${location}/secrets.${clusterName}/SealedSecret-*|grep .|sed 's/\//\\\//g');sed -i "s/${keyId}.*$/${keyId}: ${value}/" ${location}/values.${clusterName}.yaml
 
 key=aws_secret_access_key
 keyId=${key}
-value=$(awk -F "${key}: " '{print $2}' provider-aws/helm-sealed/secrets.${clusterName}/SealedSecret-*|grep .|sed 's/\//\\\//g');sed -i "s/${keyId}.*$/${keyId}: ${value}/" provider-aws/helm-sealed/values.${clusterName}.yaml
+value=$(awk -F "${key}: " '{print $2}' ${location}/secrets.${clusterName}/SealedSecret-*|grep .|sed 's/\//\\\//g');sed -i "s/${keyId}.*$/${keyId}: ${value}/" ${location}/values.${clusterName}.yaml
 
 key=install-config.yaml
 keyId=installConfig
-value=$(awk -F "${key}: " '{print $2}' provider-aws/helm-sealed/secrets.${clusterName}/SealedSecret-*|grep .|sed 's/\//\\\//g');sed -i "s/${keyId}.*$/${keyId}: ${value}/" provider-aws/helm-sealed/values.${clusterName}.yaml
+value=$(awk -F "${key}: " '{print $2}' ${location}/secrets.${clusterName}/SealedSecret-*|grep .|sed 's/\//\\\//g');sed -i "s/${keyId}.*$/${keyId}: ${value}/" ${location}/values.${clusterName}.yaml
 
 key=.dockerconfigjson
 keyId=pullSecret
-value=$(awk -F "${key}: " '{print $2}' provider-aws/helm-sealed/secrets.${clusterName}/SealedSecret-*|grep .|sed 's/\//\\\//g');sed -i "s/${keyId}.*$/${keyId}: ${value}/" provider-aws/helm-sealed/values.${clusterName}.yaml
+value=$(awk -F "${key}: " '{print $2}' ${location}/secrets.${clusterName}/SealedSecret-*|grep .|sed 's/\//\\\//g');sed -i "s/${keyId}.*$/${keyId}: ${value}/" ${location}/values.${clusterName}.yaml
 
 key=ssh-privatekey
 keyId=sshPrivateKey
-value=$(awk -F "${key}: " '{print $2}' provider-aws/helm-sealed/secrets.${clusterName}/SealedSecret-*|grep .|sed 's/\//\\\//g');sed -i "s/${keyId}.*$/${keyId}: ${value}/" provider-aws/helm-sealed/values.${clusterName}.yaml
+value=$(awk -F "${key}: " '{print $2}' ${location}/secrets.${clusterName}/SealedSecret-*|grep .|sed 's/\//\\\//g');sed -i "s/${keyId}.*$/${keyId}: ${value}/" ${location}/values.${clusterName}.yaml
+```
+## Push the changes
+```
+git add ${location}/values.${clusterName}.yaml
+
+git commit -m ${location}/values.${clusterName}.yaml
+
+git push
 ```
