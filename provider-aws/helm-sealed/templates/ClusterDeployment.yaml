@@ -29,6 +29,6 @@ spec:
     installConfigSecretRef:
       name: "{{ .Values.cluster.name }}-install-config"
     sshPrivateKeySecretRef:
-      name: "{{ .Values.cluster.name }}-ssh-privatekey"
+      name: "{{ .Values.cluster.name }}-ssh-private-key"
   pullSecretRef:
     name: "{{ .Values.cluster.name }}-pull-secret"
