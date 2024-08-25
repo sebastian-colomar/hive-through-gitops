@@ -4,7 +4,7 @@ metadata:
   finalizers:
   - hive.openshift.io/deprovision
   labels:
-    cloud: {{ .Values.cluster.cloud }}
+    cloud: {{ .Values.cluster.cloud2 }}
     cluster.open-cluster-management.io/clusterset: {{ .Values.cluster.clusterset }}
     hive.openshift.io/cluster-platform: {{ .Values.cluster.platform }}
     hive.openshift.io/cluster-region: {{ .Values.aws.region }}
