@@ -43,7 +43,7 @@ key=.dockerconfigjson
 keyId=pullSecret
 value=$(awk -F "${key}: " '{print $2}' ${location}/secrets.${clusterName}/SealedSecret-*|grep .|sed 's/\//\\\//g');sed -i "s/${keyId}.*$/${keyId}: ${value}/" ${location}/values.${clusterName}.yaml
 
-key=ssh-privatekey
+key=ssh-private-key
 keyId=sshPrivateKey
 value=$(awk -F "${key}: " '{print $2}' ${location}/secrets.${clusterName}/SealedSecret-*|grep .|sed 's/\//\\\//g');sed -i "s/${keyId}.*$/${keyId}: ${value}/" ${location}/values.${clusterName}.yaml
 ```
