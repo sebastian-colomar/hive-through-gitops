@@ -13,11 +13,12 @@ spec:
   clusterName: {{ .Values.cluster.name }}
   clusterNamespace: {{ .Values.cluster.name }}
   clusterLabels:
-    cloud: {{ .Values.cluster.cloud }}
+    cloud: {{ .Values.cluster.cloud1 }}
     vendor: {{ .Values.cluster.vendor }}
-  iamPolicyController:
-    enabled: true
-    #proxyPolicy: OCPGlobalProxy
+  #Not enabled in clusters created with ACM using the graphical console:
+  #iamPolicyController:
+  #  enabled: true
+  #  #proxyPolicy: OCPGlobalProxy
   policyController:
     enabled: true
     #proxyPolicy: OCPGlobalProxy
