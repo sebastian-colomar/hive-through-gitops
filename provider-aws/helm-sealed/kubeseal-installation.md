@@ -25,27 +25,53 @@ clusterName=helm-sealed-1
 location=provider-aws/helm-sealed
 ```
 ```
+oc new-project ${clusterName}
+
+secretName=aws-creds
+
+secretNamespace=open-cluster-management
+```
+```
 for secret in ${location}/secrets.${clusterName}/Secret-*.yaml;do name=$(echo ${secret}|awk -F"${location}/secrets.${clusterName}/" '{print $2}');kubeseal -f ${secret} -w ${location}/secrets.${clusterName}/Sealed${name};done
-
-key=aws_access_key_id
-keyId=${key}
-value=$(awk -F "${key}: " '{print $2}' ${location}/secrets.${clusterName}/SealedSecret-*|grep .|sed 's/\//\\\//g');sed -i "s/${keyId}.*$/${keyId}: ${value}/" ${location}/values.${clusterName}.yaml
-
-key=aws_secret_access_key
-keyId=${key}
-value=$(awk -F "${key}: " '{print $2}' ${location}/secrets.${clusterName}/SealedSecret-*|grep .|sed 's/\//\\\//g');sed -i "s/${keyId}.*$/${keyId}: ${value}/" ${location}/values.${clusterName}.yaml
 
 key=install-config.yaml
 keyId=installConfig
 value=$(awk -F "${key}: " '{print $2}' ${location}/secrets.${clusterName}/SealedSecret-*|grep .|sed 's/\//\\\//g');sed -i "s/${keyId}.*$/${keyId}: ${value}/" ${location}/values.${clusterName}.yaml
 
+secretSuffix=aws-creds
+oc create secret generic ${clusterName}-${secretSuffix} --namespace ${clusterName}
+
+key=aws_access_key_id
+keyId=${key}
+#value=$(awk -F "${key}: " '{print $2}' ${location}/secrets.${clusterName}/SealedSecret-*|grep .|sed 's/\//\\\//g');sed -i "s/${keyId}.*$/${keyId}: ${value}/" ${location}/values.${clusterName}.yaml
+oc patch secret ${clusterName}-${secretSuffix} --namespace=${clusterName} --patch='{"data":{"'${key}'":"'$(oc get secret ${secretName} --namespace=${secretNamespace} -ojsonpath="{.data.${keyId}}")'"}}'
+
+key=aws_secret_access_key
+keyId=${key}
+#value=$(awk -F "${key}: " '{print $2}' ${location}/secrets.${clusterName}/SealedSecret-*|grep .|sed 's/\//\\\//g');sed -i "s/${keyId}.*$/${keyId}: ${value}/" ${location}/values.${clusterName}.yaml
+oc patch secret ${clusterName}-${secretSuffix} --namespace=${clusterName} --patch='{"data":{"'${key}'":"'$(oc get secret ${secretName} --namespace=${secretNamespace} -ojsonpath="{.data.${keyId}}")'"}}'
+
+oc label secret ${clusterName}-${secretSuffix} --namespace=${clusterName} cluster.open-cluster-management.io/backup=cluster cluster.open-cluster-management.io/copiedFromNamespace=${secretNamespace} cluster.open-cluster-management.io/copiedFromSecretName=${secretName}
+
+secretSuffix=pull-secret
+oc create secret generic ${clusterName}-${secretSuffix} --namespace ${clusterName}
+
 key=.dockerconfigjson
 keyId=pullSecret
-value=$(awk -F "${key}: " '{print $2}' ${location}/secrets.${clusterName}/SealedSecret-*|grep .|sed 's/\//\\\//g');sed -i "s/${keyId}.*$/${keyId}: ${value}/" ${location}/values.${clusterName}.yaml
+#value=$(awk -F "${key}: " '{print $2}' ${location}/secrets.${clusterName}/SealedSecret-*|grep .|sed 's/\//\\\//g');sed -i "s/${keyId}.*$/${keyId}: ${value}/" ${location}/values.${clusterName}.yaml
+oc patch secret ${clusterName}-${secretSuffix} --namespace=${clusterName} --patch='{"data":{"'${key}'":"'$(oc get secret ${secretName} --namespace=${secretNamespace} -ojsonpath="{.data.${keyId}}")'"}}'
 
-key=ssh-private-key
+oc label secret ${clusterName}-${secretSuffix} --namespace=${clusterName} cluster.open-cluster-management.io/backup=cluster cluster.open-cluster-management.io/copiedFromNamespace=${secretNamespace} cluster.open-cluster-management.io/copiedFromSecretName=${secretName}
+
+secretSuffix=ssh-private-key
+oc create secret generic ${clusterName}-${secretSuffix} --namespace ${clusterName}
+
+key=ssh-privatekey
 keyId=sshPrivateKey
-value=$(awk -F "${key}: " '{print $2}' ${location}/secrets.${clusterName}/SealedSecret-*|grep .|sed 's/\//\\\//g');sed -i "s/${keyId}.*$/${keyId}: ${value}/" ${location}/values.${clusterName}.yaml
+#value=$(awk -F "${key}: " '{print $2}' ${location}/secrets.${clusterName}/SealedSecret-*|grep .|sed 's/\//\\\//g');sed -i "s/${keyId}.*$/${keyId}: ${value}/" ${location}/values.${clusterName}.yaml
+oc patch secret ${clusterName}-${secretSuffix} --namespace=${clusterName} --patch='{"data":{"'${key}'":"'$(oc get secret ${secretName} --namespace=${secretNamespace} -ojsonpath="{.data.${key}}"  )'"}}'
+
+oc label secret ${clusterName}-${secretSuffix} --namespace=${clusterName} cluster.open-cluster-management.io/backup=cluster cluster.open-cluster-management.io/copiedFromNamespace=${secretNamespace} cluster.open-cluster-management.io/copiedFromSecretName=${secretName}
 ```
 ## Push the changes
 ```
