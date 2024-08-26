@@ -21,7 +21,8 @@ sudo cp kubeseal /usr/local/bin/
 ## Encrypt the secrets with Kubeseal
 ```
 clusterName=helm-sealed-1
-
+```
+```
 location=provider-aws/helm-sealed
 
 mkdir -p ${location}/secrets.${clusterName}
