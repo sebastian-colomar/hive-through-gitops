@@ -20,13 +20,6 @@ rules:
   - create
   - delete
 - apiGroups:
-  - bitnami.com
-  resources:
-  - sealedsecrets
-  verbs:
-  - create
-  - delete
-- apiGroups:
   - hive.openshift.io
   resources:
   - clusterdeployments
