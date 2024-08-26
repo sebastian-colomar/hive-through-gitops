@@ -1,0 +1,38 @@
+aws:
+  region: ap-south-1
+cluster:
+  baseDomain: sebastian-colomar.com
+  cloud1: Amazon
+  cloud2: AWS
+  clusterset: default
+  image: img4.16.8-multi-appsub
+  installConfig: AgBHJxvU8hJVmHXl191vlWM/mWHaCIBg2Mq6H3hdBuFrrvJ//gz/R41Eggz5TmPTyuFpLBr5fIZ20d0FvCQKvFZeavenZu4JP/MOTngfZBFtEeAnDn6B92kW9KsoKawgtJ36CZb7VgER6GBBLolAwKKCh5vbJVIy+mo37Q79r+yy1RnM4EScffvMpNP5iNNmwp0Lw/2bWdJYcdY8SyyhK/QWwitOni4SFAtPvn3ldVfWdcpJpHv2f96MlaGPO+Ff3+yPaYBRD5ZyMg3T7v3RLqJztG5uSka6lauYTDOQQ7TJfpnKN/56ElqEngt+3KNNHGS9kDbrbqkswaT8fXCiytyklZ4wAPh/9HANcVVNBLnlpzneX6cQjuIGXZZtEbw+8fFRxpivdHy3hjNcDUo2keehwOUIWHzYIeqpaHUcEJYoXvdlH8hH4ZF55vpAuzuHDhgkUCQqxSmtQEcl5bAQbTfWSAuJNomFFxvPw/rNEhynNWildqGYEczCs+lh5JUlFNP+mH4W/uwG4Z1RhYJGcjkT/ficje9fU9EZqTBoSd5AIvrX22um+0nyqSEQvubjF2IpaF1pd3nU+kf3qCKySP/HTF3kFpO+s9CwN3EhTkE8mYM4yh2GXNSfvM95PkIvyUx9JfjW0FsQT7v6qrgNTAhubo9Px3U1ce9LtjFoJLLHOyIr22Xa7JMXTzz57+3KIESCEK6JyfFHuaFhIjuFRfcNocCEXhkeW7KQvtoeSJv0xs4GSm5C8d26nvA7yUsaFDPUh0+yamS5+ewio9RkpgCoUSBKm3M97TQTswvrlbZFq1kyiCeBEGrt0Zg5q+x8JG0meaq3hTY0edos3MjY9El6nluw7f4VSiGSwyQVO89Z75MsumloufFgfsQjAB+0gJ+PPQslBsNuL94To/o5eFBhAgtXHkG8Va4cIobw+ONPCtOdQqOvrHWO3V5V5LO6ehW2zyi5b2h/jZJFq9LzLHwz05rd8awdnzGL491rrP1oyb5dvIefkEP2S/Hufdwrsxly3c4eDDAeQtdF2TLFW+htGn35bdpm/n1Qg0d/e5bllej1iRuz1ynU9km0xLI1wAIiQoEcTd42q4jhbx3Aa/whV1jXsQtdLGQG+23Na5TopyHHFNhocQL8zlVAnsF2MZTl5m6PhF64vobeVh/kLTeb9d9D0FoJpmKJlRXNJ2FxYpnv5c9fqIYVcjR32MfwPlN36yBbVfvZMnnk6ejgFSKsVZOXJuPBLzaCPh16m0F60MqvJXYiBLD58w5/P3pa8wAqpSPTyZK+0K1h5kstismZYMFbY6XBemQPOTM7imZXW0125iHpedE9mDwAIc8RE3r6w5PJSpsHASw6RAkCQ78+XuG4YA+/dY34ohXvbFujSbLlSxdXZVwRDUByjnMy9/tRF9Z5O93rVbrQilKYiPNzPQPyDovihZ8dUpf5rKKXD+psVs/Gfr55yLiO5mDE+1Z8vZim1U9UMX8kaOc1DEv/ZIAPbtGx57ErBsPLpP33rJ/WOadNDTtWdFhmRy/IUhGOA64Dj2IT09CDblJ283a10MTPciLnG2O6g3rIHlkBwJD0BvX9BSFcozw3B9RbV2279gV0LSqx77VmTMTUoBWHAxr1fe0UVVcqsRqHuItMoNCgV/zbyibHZWQOrIQMQw2Vjt/oPcQGl15XIN6LcdE+6PJFmNEnfXLx6akTBWMPbkd3TA1dQpLPEVj/U+Vj1O53kg8d9lX1d/bjC17IDLgd+U+B1VEHSpvqdApk5+PVbWkWUTNJFIuIYd0A/5ge7C3rEc6fFKTiLYmtVdfLUQRFLEMpuUMepgqcwcwwh2ciXzUpQpcpyQSmQO2FpxtQ8EH65swnJihz5S/ZyofYCY36JDS26WPgsd9tc5yl/mmwq2Uk7bDdRhNpsIjvP/ikPFApNoCJEaA8tgnWQyl5tIbTxW1yaHcQmfUUujYh6lqhucbAOvMlt8I7DlLSASKnkwYbRPJqUn9FeQixfhAQFKJ0qXp4wSaouP+L/8w/Bl4GBQe4Mnnd9AWARQb/RvFEN6oZSYYDuQmLIrJuzcSi
+  name: helm-sealed-3
+  platform: aws
+  sshPrivateKey: 
+  vendor: OpenShift
+gitops:
+  name: openshift-gitops
+  namespace: openshift-gitops
+machinepools:
+  - 
+    name: worker
+    replicas: 3
+    rootVolume:
+      iops: 3000
+      size: 100
+      type: gp3
+    type: t3a.large
+  - 
+    labels:
+      node-role.kubernetes.io/infra: ""
+    name: infra
+    replicas: 3
+    rootVolume:
+      iops: 3000
+      size: 100
+      type: gp3
+    taints:
+    - effect: NoSchedule
+      key: node-role.kubernetes.io/infra
+    type: t3a.large
