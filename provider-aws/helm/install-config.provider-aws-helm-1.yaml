@@ -1,13 +1,5 @@
 apiVersion: v1
 baseDomain: sebastian-colomar.com
-controlPlane:
-  architecture: amd64
-  hyperthreading: Enabled
-  name: master
-  platform:
-    aws:
-      type: t3a.xlarge
-  replicas: 3
 compute:
 - architecture: amd64
   hyperthreading: Enabled
@@ -15,6 +7,14 @@ compute:
   platform:
     aws:
       type: t3a.large
+  replicas: 3
+controlPlane:
+  architecture: amd64
+  hyperthreading: Enabled
+  name: master
+  platform:
+    aws:
+      type: t3a.xlarge
   replicas: 3
 metadata:
   name: provider-aws-helm-1

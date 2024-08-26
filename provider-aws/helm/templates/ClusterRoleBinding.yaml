@@ -7,6 +7,6 @@ roleRef:
   kind: ClusterRole
   name: {{ .Values.cluster.name }}
 subjects:
-  - kind: ServiceAccount
-    name: "{{ .Values.gitops.name }}-argocd-application-controller"
-    namespace: {{ .Values.gitops.namespace }}
+- kind: ServiceAccount
+  name: "{{ .Values.gitops.name }}-argocd-application-controller"
+  namespace: {{ .Values.gitops.namespace }}

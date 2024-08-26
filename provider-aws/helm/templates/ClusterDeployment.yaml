@@ -2,9 +2,9 @@ apiVersion: hive.openshift.io/v1
 kind: ClusterDeployment
 metadata:
   finalizers:
-    - hive.openshift.io/deprovision
+  - hive.openshift.io/deprovision
   labels:
-    cloud: {{ .Values.cluster.cloud }}
+    cloud: {{ .Values.cluster.cloud2 }}
     cluster.open-cluster-management.io/clusterset: {{ .Values.cluster.clusterset }}
     hive.openshift.io/cluster-platform: {{ .Values.cluster.platform }}
     hive.openshift.io/cluster-region: {{ .Values.aws.region }}
@@ -29,6 +29,6 @@ spec:
     installConfigSecretRef:
       name: "{{ .Values.cluster.name }}-install-config"
     sshPrivateKeySecretRef:
-      name: "{{ .Values.cluster.name }}-ssh-privatekey"
+      name: "{{ .Values.cluster.name }}-ssh-private-key"
   pullSecretRef:
     name: "{{ .Values.cluster.name }}-pull-secret"
