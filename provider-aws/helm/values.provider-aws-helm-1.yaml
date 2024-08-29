@@ -17,20 +17,7 @@ machinepools:
     name: worker
     replicas: 3
     rootVolume:
-      iops: 3000
+      iops: 2000
       size: 100
-      type: gp3
-    type: t3a.large
-  - 
-    labels:
-      node-role.kubernetes.io/infra: ""
-    name: infra
-    replicas: 3
-    rootVolume:
-      iops: 3000
-      size: 100
-      type: gp3
-    taints:
-    - effect: NoSchedule
-      key: node-role.kubernetes.io/infra
-    type: t3a.large
+      type: io1
+    type: m5.xlarge
