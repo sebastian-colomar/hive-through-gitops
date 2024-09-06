@@ -1,0 +1,10 @@
+apiVersion: cluster.open-cluster-management.io/v1beta1
+kind: Restore
+metadata:
+  name: example
+  namespace: open-cluster-management-backup
+spec:
+  cleanupBeforeRestore: None
+  veleroCredentialsBackupName: latest
+  veleroManagedClustersBackupName: latest
+  veleroResourcesBackupName: latest
