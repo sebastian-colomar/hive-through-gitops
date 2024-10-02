@@ -50,8 +50,8 @@ Create a new project with the cluster name and create the necessary secrets for 
 ```
 oc new-project ${clusterName}
 
-secretName=aws-cloud-credentials
-secretNamespace=openshift-machine-api
+secretName=aws-creds
+secretNamespace=kube-system
 
 secretSuffix=install-config
 oc create secret generic ${clusterName}-${secretSuffix} --from-file=${secretSuffix}.yaml=${location}/${secretSuffix}.${clusterName}.yaml --namespace ${clusterName}
