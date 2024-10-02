@@ -34,13 +34,13 @@ location=provider-${provider}/${method}
 
 clusterName=provider-${provider}-${method}-${clusterId}
 ```
-Modify the install-config.yaml file as needed.
+Modify the install-config.yaml file as needed:
 ```
 touch ${location}/install-config.${clusterName}.yaml
 
 vi ${location}/install-config.${clusterName}.yaml
 ```
-Modify the values.${clusterName}.yaml file as needed.
+Modify the values.${clusterName}.yaml file as needed:
 ```
 touch ${location}/values.${clusterName}.yaml
 
