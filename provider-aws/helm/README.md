@@ -46,6 +46,14 @@ touch ${location}/values.${clusterName}.yaml
 
 vi ${location}/values.${clusterName}.yaml
 ```
+Push the changes to the git repository:
+```
+git add ${location}/values.${clusterName}.yaml
+
+git commit -m ${location}/values.${clusterName}.yaml
+
+git push
+```
 Create a new project with the cluster name and create the necessary secrets for the installation configuration, platform credentials, Red Hat credentials and SSH private key:
 ```
 oc new-project ${clusterName}
@@ -79,14 +87,6 @@ secretSuffix=ssh-private-key
 oc create secret generic ${clusterName}-${secretSuffix} --namespace ${clusterName}
 key=ssh-privatekey
 keyId=sshPrivateKey
-oc patch secret ${clusterName}-${secretSuffix} --namespace=${clusterName} --patch='{"data":{"'${key}'":"'$(oc get secret ${secretName} --namespace=${secretNamespace} -ojsonpath="{.data.${key}}"  )'"}}'
-oc label secret ${clusterName}-${secretSuffix} --namespace=${clusterName} cluster.open-cluster-management.io/backup=cluster cluster.open-cluster-management.io/copiedFromNamespace=${secretNamespace} cluster.open-cluster-management.io/copiedFromSecretName=${secretName}
-```
-Push the changes
-```
-git add ${location}/values.${clusterName}.yaml
-
-git commit -m ${location}/values.${clusterName}.yaml
-
-git push
+oc patch secret ${clusterName}-${secretSuffix} --namespace=${clusterName} --patch='{"data":{"'${key}'":"'$(cat ${HOME}/.ssh/id_rsa | base64 | tr -d '\n')'"}}'
+oc label secret ${clusterName}-${secretSuffix} --namespace=${clusterName} cluster.open-cluster-management.io/backup=cluster
 ```
