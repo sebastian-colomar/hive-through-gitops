@@ -20,10 +20,12 @@ Change directory into the repository folder:
 ```
 cd hive-through-gitops/
 ```
-Launch the following commands:
+Choose the name of your cluster:
 ```
 clusterId=1
-
+```
+Launch the following commands:
+```
 method=helm
 
 provider=aws
