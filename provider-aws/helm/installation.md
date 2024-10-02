@@ -1,3 +1,12 @@
+Install Red Hat Advanced Cluster Management for Kubernetes and create a MultiClusterHub instance.
+
+Install Red Hat OpenShift GitOps.
+
+Connect to the openshift-gitops-server URL:
+- https://openshift-gitops-server-openshift-gitops.apps.openshift.sebastian-colomar.es/settings/repos
+
+Connect a new repository:
+- https://github.com/sebastian-colomar/hive-through-gitops
 ```
 clusterId=1
 
