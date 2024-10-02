@@ -1,3 +1,7 @@
+# How to create a new OCP cluster using ACM, GitOps and Helm
+
+## Procedure
+
 Install Red Hat Advanced Cluster Management for Kubernetes and create a MultiClusterHub instance.
 
 Install Red Hat OpenShift GitOps.
@@ -7,14 +11,23 @@ Connect to the openshift-gitops-server URL:
 
 Connect a new repository:
 - https://github.com/sebastian-colomar/hive-through-gitops
+
+Clone this git repository:
+```
+git clone https://github.com/sebastian-colomar/hive-through-gitops
+```
+Change directory to the following location:
+```
+cd hive-through-gitops/provider-aws/helm/
+```
+Launch the following commands:
 ```
 clusterId=1
 
 method=helm
 
 provider=aws
-```
-```
+
 location=provider-${provider}/${method}
 
 clusterName=provider-${provider}-${method}-${clusterId}
@@ -31,14 +44,13 @@ touch ${location}/values.${clusterName}.yaml
 
 vi ${location}/values.${clusterName}.yaml
 ```
+Create a new project with the cluster name and create the necessary secrets for the installation configuration, platform credentials, Red Hat credentials and SSH private key:
 ```
 oc new-project ${clusterName}
 
-secretName=aws-creds
+secretName=aws-cloud-credentials
+secretNamespace=openshift-machine-api
 
-secretNamespace=open-cluster-management
-```
-```
 secretSuffix=install-config
 oc create secret generic ${clusterName}-${secretSuffix} --from-file=${secretSuffix}.yaml=${location}/${secretSuffix}.${clusterName}.yaml --namespace ${clusterName}
 oc label secret ${clusterName}-${secretSuffix} --namespace=${clusterName} cluster.open-cluster-management.io/backup=cluster
@@ -67,7 +79,7 @@ keyId=sshPrivateKey
 oc patch secret ${clusterName}-${secretSuffix} --namespace=${clusterName} --patch='{"data":{"'${key}'":"'$(oc get secret ${secretName} --namespace=${secretNamespace} -ojsonpath="{.data.${key}}"  )'"}}'
 oc label secret ${clusterName}-${secretSuffix} --namespace=${clusterName} cluster.open-cluster-management.io/backup=cluster cluster.open-cluster-management.io/copiedFromNamespace=${secretNamespace} cluster.open-cluster-management.io/copiedFromSecretName=${secretName}
 ```
-## Push the changes
+Push the changes
 ```
 git add ${location}/values.${clusterName}.yaml
 
