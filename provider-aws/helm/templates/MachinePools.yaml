@@ -17,9 +17,9 @@ spec:
   platform:
     aws:
       rootVolume:
-        iops: {{ $v.rootVolume.iops }}
+        #iops: {{ $v.rootVolume.iops }}
         size: {{ $v.rootVolume.size }}
-        type: {{ $v.rootVolume.type }}
+        #type: {{ $v.rootVolume.type }}
       type: {{ $v.type }}
   replicas: {{ $v.replicas }}
 {{- if $v.taints }}
