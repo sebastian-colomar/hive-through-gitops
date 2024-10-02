@@ -50,13 +50,12 @@ Create a new project with the cluster name and create the necessary secrets for 
 ```
 oc new-project ${clusterName}
 
-secretName=aws-creds
-secretNamespace=kube-system
-
 secretSuffix=install-config
 oc create secret generic ${clusterName}-${secretSuffix} --from-file=${secretSuffix}.yaml=${location}/${secretSuffix}.${clusterName}.yaml --namespace ${clusterName}
 oc label secret ${clusterName}-${secretSuffix} --namespace=${clusterName} cluster.open-cluster-management.io/backup=cluster
 
+secretName=aws-creds
+secretNamespace=kube-system
 secretSuffix=aws-creds
 oc create secret generic ${clusterName}-${secretSuffix} --namespace ${clusterName}
 key=aws_access_key_id
@@ -67,6 +66,8 @@ keyId=${key}
 oc patch secret ${clusterName}-${secretSuffix} --namespace=${clusterName} --patch='{"data":{"'${key}'":"'$(oc get secret ${secretName} --namespace=${secretNamespace} -ojsonpath="{.data.${keyId}}")'"}}'
 oc label secret ${clusterName}-${secretSuffix} --namespace=${clusterName} cluster.open-cluster-management.io/backup=cluster cluster.open-cluster-management.io/copiedFromNamespace=${secretNamespace} cluster.open-cluster-management.io/copiedFromSecretName=${secretName}
 
+secretName=pull-secret
+secretNamespace=openshift-config
 secretSuffix=pull-secret
 oc create secret generic ${clusterName}-${secretSuffix} --namespace ${clusterName}
 key=.dockerconfigjson
