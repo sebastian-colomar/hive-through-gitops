@@ -16,9 +16,9 @@ Clone this git repository:
 ```
 git clone https://github.com/sebastian-colomar/hive-through-gitops
 ```
-Change directory to the following location:
+Change directory into the repository folder:
 ```
-cd hive-through-gitops/provider-aws/helm/
+cd hive-through-gitops/
 ```
 Launch the following commands:
 ```
