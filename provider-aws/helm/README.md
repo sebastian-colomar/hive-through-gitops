@@ -40,6 +40,14 @@ touch ${location}/install-config.${clusterName}.yaml
 
 vi ${location}/install-config.${clusterName}.yaml
 ```
+Push the changes to the git repository:
+```
+git add ${location}/install-config.${clusterName}.yaml
+
+git commit -m ${location}/install-config.${clusterName}.yaml
+
+git push
+```
 Modify the values.${clusterName}.yaml file as needed:
 ```
 touch ${location}/values.${clusterName}.yaml
@@ -51,6 +59,20 @@ Push the changes to the git repository:
 git add ${location}/values.${clusterName}.yaml
 
 git commit -m ${location}/values.${clusterName}.yaml
+
+git push
+```
+Modify the ApplicationSet.yaml file as needed:
+```
+touch ${location}/ApplicationSet.yaml
+
+vi ${location}/ApplicationSet.yaml
+```
+Push the changes to the git repository:
+```
+git add ${location}/ApplicationSet.yaml
+
+git commit -m ${location}/ApplicationSet.yaml
 
 git push
 ```
@@ -84,4 +106,8 @@ oc create secret generic ${clusterName}-${secretSuffix} --namespace ${clusterNam
 key=ssh-privatekey
 oc patch secret ${clusterName}-${secretSuffix} --namespace=${clusterName} --patch='{"data":{"'${key}'":"'$(cat ${HOME}/.ssh/id_rsa | base64 | tr -d '\n')'"}}'
 oc label secret ${clusterName}-${secretSuffix} --namespace=${clusterName} cluster.open-cluster-management.io/backup=cluster
+```
+Apply the ApplicationSet:
+```
+oc apply -f ${location}/ApplicationSet.yaml
 ```
