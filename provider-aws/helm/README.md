@@ -111,3 +111,15 @@ Apply the ApplicationSet:
 ```
 oc apply -f ${location}/ApplicationSet.yaml
 ```
+To prevent unintended changes in your cluster, you can remove the cluster element from the ApplicationSet after the cluster has been successfully created:
+```
+sed -i '/generators:/,/syncPolicy:/ {/- cluster: '\'"${clusterId}"\''/d}' ${location}/ApplicationSet.yaml
+
+git add ${location}/ApplicationSet.yaml
+
+git commit -m "Remove cluster ${clusterId} from ApplicationSet"
+
+git push
+
+oc apply -f ${location}/ApplicationSet.yaml
+```
