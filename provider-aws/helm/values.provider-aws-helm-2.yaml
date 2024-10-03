@@ -17,7 +17,7 @@ machinepools:
     name: worker
     replicas: 3
     rootVolume:
-      #iops: 2000
+      iops: 2000
       size: 120
-      #type: io1
+      type: io1
     type: m6a.large
