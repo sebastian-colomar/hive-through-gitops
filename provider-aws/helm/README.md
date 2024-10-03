@@ -111,9 +111,9 @@ Apply the ApplicationSet:
 ```
 oc apply -f ${location}/ApplicationSet.yaml
 ```
-To prevent unintended changes in your cluster, you can remove the cluster element from the ApplicationSet after the cluster has been successfully created:
+To prevent unintended changes in your cluster, you can comment out the cluster element from the ApplicationSet after the cluster has been successfully created:
 ```
-sed -i '/generators:/,/syncPolicy:/ {/- cluster: '\'"${clusterId}"\''/d}' ${location}/ApplicationSet.yaml
+sed -i '/generators:/,/syncPolicy:/ {/- cluster: '\'"${clusterId}"\''/s/- cluster:/#- cluster:/}' ${location}/ApplicationSet.yaml
 
 git add ${location}/ApplicationSet.yaml
 
