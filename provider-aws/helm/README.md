@@ -123,3 +123,12 @@ git push
 
 oc apply -f ${location}/ApplicationSet.yaml
 ```
+You can destroy the cluster from the graphical dashboard:
+- https://console-openshift-console.apps.openshift.sebastian-colomar.es/multicloud/infrastructure/clusters/managed
+
+Alternatively, you can use the following command:
+```
+oc delete managedcluster ${clusterName}
+
+oc delete clusterdeployment ${clusterName} --namespace=${clusterName}
+```
