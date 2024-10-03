@@ -1,4 +1,4 @@
-# How to create a new OCP cluster on AWS using ACM, GitOps, and Helm
+# How to create an OCP cluster on AWS using ACM, GitOps, and Helm
 
 ## Procedure
 
