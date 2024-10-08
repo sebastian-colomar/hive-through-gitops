@@ -10,7 +10,7 @@
 1. Edit the `MultiClusterHub` resource by setting the `cluster-backup` parameter to `true`.
    You can either use the graphical console for this task or run the following command line:
    ```
-   oc patch MultiClusterEngine multiclusterhub -n ${NAMESPACE} --type='merge' -p '{"spec":{"overrides":{"components":[{"name":"cluster-backup","enabled":true}]}}}'
+   oc patch MultiClusterEngine ${NAME} -n ${NAMESPACE} --type='merge' -p '{"spec":{"overrides":{"components":[{"name":"cluster-backup","enabled":true}]}}}'
    ```
    This will install the OADP operator in the `open-cluster-management-backup` namespace.
    Wait until the installation is complete.
@@ -18,7 +18,7 @@
    Edit the `MultiClusterHub` resource by setting the `managedserviceaccount` parameter to `true`.
    You can either use the graphical console for this task or run the following command line:
    ```
-   oc patch MultiClusterEngine multiclusterhub -n ${NAMESPACE} --type='merge' -p '{"spec":{"overrides":{"components":[{"name":"managedserviceaccount","enabled":true}]}}}'
+   oc patch MultiClusterEngine ${NAME} -n ${NAMESPACE} --type='merge' -p '{"spec":{"overrides":{"components":[{"name":"managedserviceaccount","enabled":true}]}}}'
    ```
    This will enable the Managed Service Account component to automatically connect imported clusters when restoring a backup to a new hub cluster.
 1. Create the storage location secret in the OADP Operator namespace, which is located in the backup component namespace:
