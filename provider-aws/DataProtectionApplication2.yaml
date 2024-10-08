@@ -14,8 +14,8 @@ spec:
           name: cloud-credentials
         default: true
         objectStorage:
-          bucket: acm-passive
-          prefix: velero
+          bucket: openshift.sebastian-colomar.es
+          prefix: velero2
         provider: aws
   configuration:
     nodeAgent:
