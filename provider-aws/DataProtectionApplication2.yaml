@@ -1,7 +1,7 @@
 apiVersion: oadp.openshift.io/v1alpha1
 kind: DataProtectionApplication
 metadata:
-  name: velero-sample2
+  name: velero-sample
   namespace: open-cluster-management-backup
 spec:
   backupLocations:
