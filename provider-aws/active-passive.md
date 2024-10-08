@@ -17,9 +17,9 @@
 1. If you have clusters under management that were not created using Hive (like those manually imported).
    Edit the `MultiClusterHub` resource by setting the `managedserviceaccount` parameter to `true`.
    You can either use the graphical console for this task or run the following command line:
-   ```
-   oc patch MultiClusterEngine ${NAME} -n ${NAMESPACE} --type='merge' -p '{"spec":{"overrides":{"components":[{"name":"managedserviceaccount","enabled":true}]}}}'
-   ```
+   ```
+   oc patch MultiClusterEngine ${NAME} -n ${NAMESPACE} --type='merge' -p '{"spec":{"overrides":{"components":[{"name":"managedserviceaccount","enabled":true}]}}}'
+   ```
    This will enable the Managed Service Account component to automatically connect imported clusters when restoring a backup to a new hub cluster.
 1. Create the storage location secret in the OADP Operator namespace, which is located in the backup component namespace:
    ```
