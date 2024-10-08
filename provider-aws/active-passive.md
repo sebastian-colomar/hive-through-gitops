@@ -10,7 +10,7 @@
 1. Edit the `MultiClusterHub` resource by setting the `cluster-backup` parameter to `true`.
    You can either use the graphical console for this task or run the following command line:
    ```
-   oc patch multiclusterhub multiclusterhub -n ${NAMESPACE} --type='merge' -p '{"spec":{"overrides":{"components":[{"name":"cluster-backup","enabled":true}]}}}'
+   oc patch MultiClusterEngine multiclusterhub -n ${NAMESPACE} --type='merge' -p '{"spec":{"overrides":{"components":[{"name":"cluster-backup","enabled":true}]}}}'
    ```
    This will install the OADP operator in the `open-cluster-management-backup` namespace.
    Wait until the installation is complete.
