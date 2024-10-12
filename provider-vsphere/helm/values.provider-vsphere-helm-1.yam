@@ -1,0 +1,28 @@
+vsphere:
+  cluster: xxx
+  datacenter: xxx
+  defaultDatastore: xxx
+  folder: xxx
+  network: xxx
+  vCenter: xxx
+cluster:
+  baseDomain: sebastian-colomar.com
+  cloud1: vSphere
+  cloud2: vSphere
+  clusterset: default
+  image: img4.16.14-multi-appsub
+  name: provider-vsphere-helm-1
+  platform: vsphere
+  vendor: OpenShift
+gitops:
+  name: openshift-gitops
+  namespace: openshift-gitops
+machinepools:
+  - 
+    name: worker
+    replicas: 3
+    rootVolume:
+      iops: 2000
+      size: 100
+      type: io1
+    type: m6a.large
