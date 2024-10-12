@@ -21,7 +21,7 @@ spec:
   platform:
     aws:
       credentialsSecretRef:
-        name: "{{ .Values.cluster.name }}-aws-creds"
+        name: "{{ .Values.cluster.name }}-{{ .Values.cluster.platform }}-creds"
       region: {{ .Values.aws.region }}
   provisioning:
     imageSetRef:
