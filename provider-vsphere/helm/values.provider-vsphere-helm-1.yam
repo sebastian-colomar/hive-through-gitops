@@ -20,9 +20,9 @@ gitops:
 machinepools:
   - 
     coresPerSocket: 2
-      cpus: 4
-      memoryMB: 16384
-      osDisk:
-        diskSizeGB: 120
+    cpus: 4
+    memoryMB: 16384
     name: worker
+    osDisk:
+      diskSizeGB: 120
     replicas: 3
