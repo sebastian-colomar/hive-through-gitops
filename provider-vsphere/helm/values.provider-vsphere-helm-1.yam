@@ -19,10 +19,10 @@ gitops:
   namespace: openshift-gitops
 machinepools:
   - 
+    coresPerSocket: 2
+      cpus: 4
+      memoryMB: 16384
+      osDisk:
+        diskSizeGB: 120
     name: worker
     replicas: 3
-    rootVolume:
-      iops: 2000
-      size: 100
-      type: io1
-    type: m6a.large
