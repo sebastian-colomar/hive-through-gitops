@@ -17,10 +17,17 @@ spec:
     servingCertificates: {}
   installAttemptsLimit: 1
   platform:
-    aws:
+    vsphere:
+      certificatesSecretRef:
+        name: "{{ .Values.cluster.name }}-{{ .Values.cluster.platform }}-certs"
+      cluster: {{ .Values.vsphere.cluster }}
       credentialsSecretRef:
-        name: "{{ .Values.cluster.name }}-aws-creds"
-      region: {{ .Values.aws.region }}
+        name: "{{ .Values.cluster.name }}-{{ .Values.cluster.platform }}-creds"
+      datacenter: {{ .Values.vsphere.datacenter }}
+      defaultDatastore: {{ .Values.vsphere.defaultDatastore }}
+      folder: {{ .Values.vsphere.folder }}
+      network: {{ .Values.vsphere.network }}
+      vCenter: {{ .Values.vsphere.vCenter }}
   provisioning:
     imageSetRef:
       name: {{ .Values.cluster.image }}
