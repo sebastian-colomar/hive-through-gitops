@@ -1,0 +1,56 @@
+apiVersion: v1
+baseDomain: sebastian-colomar.com
+compute:
+- architecture: amd64
+  hyperthreading: Enabled
+  name: worker
+  platform:
+    vsphere:
+      coresPerSocket: 2
+      cpus: 4
+      memoryMB: 16384
+      osDisk:
+        diskSizeGB: 120
+  replicas: 3
+controlPlane:
+  architecture: amd64
+  hyperthreading: Enabled
+  name: master
+  platform:
+    vsphere:
+      coresPerSocket: 2
+      cpus: 4
+      memoryMB: 16384
+      osDisk:
+        diskSizeGB: 120
+  replicas: 3
+metadata:
+  name: provider-vsphere-helm-2
+networking:
+  clusterNetwork:
+  - cidr: 10.131.0.0/16
+    hostPrefix: 23
+  machineNetwork:
+  - cidr: 10.1.0.0/16
+  networkType: OVNKubernetes
+  serviceNetwork:
+  - 172.31.0.0/16
+platform:
+  vsphere:
+    apiVIP: 1.1.1.1
+    cluster: xxx
+    datacenter: xxx
+    defaultDatastore: xxx 
+    folder: xxx
+    ingressVIP: 1.1.1.2
+    network: xxx
+    password: xxx
+    resourcePool: xxx
+    username: xxx
+    vCenter: xxx
+proxy:
+  httpProxy: http://xxx:1111
+  httpsProxy: http://xxx:1111
+pullSecret: "" # skip, hive will inject based on it's secrets
+sshKey: |-
+  ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCwri0pp7r3vzhRxY+8FHI4h7UKcRQEV/uSUckAYwvEeK4Io6okdb+Vd/Ons/wX1CChEvKWlShklCiR03rEFgJoRMAB8bv/z+VC/VC+iltcJq1tY2/YEOZKYOCEisqYEIJ6F2nls66ePZHs84RTbmvpyCH81o+5PaZx9WoFH+PkGANuwferqTclhIY8TTOuwo8cQICo62wMtHKNphZQ2GA8IGHy5rwp9V/12d8cVqtIrxG2XQYgXrrhoTb7SgzC/IIjRxLokzzOHaVIA+kuS9aWSHTpn3+1QWbthJL7HY4xqfaeVmUA75MFLxJ5Wa/ApD+T1qhPQJ2EFUJkB84/H1dUP274L90l9xjqsRZqx0lrK+uPcTwQ98d09jzvEC07ueL3FAI4oyLOdQwrYkkOvQy423pOQWTJ0FA5/7Xcef8CxCTF+eFB9hvpDZCWehzNaycqA3+4fy6O/qW156rJxQYsq0V+nzg2XZIh6gD8fqWILkP/Hcndm06eGUcooDHwiFc=
