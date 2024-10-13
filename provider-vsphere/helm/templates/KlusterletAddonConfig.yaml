@@ -6,10 +6,10 @@ metadata:
 spec:
   applicationManager:
     enabled: true
-    #proxyPolicy: OCPGlobalProxy
+    proxyPolicy: OCPGlobalProxy
   certPolicyController:
     enabled: true
-    #proxyPolicy: OCPGlobalProxy
+    proxyPolicy: OCPGlobalProxy
   clusterName: {{ .Values.cluster.name }}
   clusterNamespace: {{ .Values.cluster.name }}
   clusterLabels:
@@ -21,7 +21,7 @@ spec:
   #  #proxyPolicy: OCPGlobalProxy
   policyController:
     enabled: true
-    #proxyPolicy: OCPGlobalProxy
+    proxyPolicy: OCPGlobalProxy
   searchCollector:
     enabled: true
-    #proxyPolicy: OCPGlobalProxy
+    proxyPolicy: OCPGlobalProxy
