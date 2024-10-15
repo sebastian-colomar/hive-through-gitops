@@ -89,7 +89,7 @@ secretName=vsphere-certs
 secretNamespace=kube-system
 secretSuffix=vsphere-certs
 oc create secret generic ${clusterName}-${secretSuffix} --namespace ${clusterName}
-for key in XXX_access_key_id XXX_secret_access_key;do
+for key in .cacert;do
   oc patch secret ${clusterName}-${secretSuffix} --namespace=${clusterName} --patch='{"data":{"'${key}'":"'$(oc get secret ${secretName} --namespace=${secretNamespace} -ojsonpath="{.data.${key}}")'"}}'
 done
 oc label secret ${clusterName}-${secretSuffix} --namespace=${clusterName} cluster.open-cluster-management.io/backup=cluster cluster.open-cluster-management.io/copiedFromNamespace=${secretNamespace} cluster.open-cluster-management.io/copiedFromSecretName=${secretName}
@@ -99,7 +99,7 @@ secretName=vsphere-creds
 secretNamespace=kube-system
 secretSuffix=vsphere-creds
 oc create secret generic ${clusterName}-${secretSuffix} --namespace ${clusterName}
-for key in XXX_access_key_id XXX_secret_access_key;do
+for key in username password;do
   oc patch secret ${clusterName}-${secretSuffix} --namespace=${clusterName} --patch='{"data":{"'${key}'":"'$(oc get secret ${secretName} --namespace=${secretNamespace} -ojsonpath="{.data.${key}}")'"}}'
 done
 oc label secret ${clusterName}-${secretSuffix} --namespace=${clusterName} cluster.open-cluster-management.io/backup=cluster cluster.open-cluster-management.io/copiedFromNamespace=${secretNamespace} cluster.open-cluster-management.io/copiedFromSecretName=${secretName}
