@@ -89,5 +89,5 @@ Alternatively, you can use the following command to DESTROY the cluster:
 ```
 oc delete managedcluster ${clusterName}
 
-oc delete clusterdeployment ${clusterName}
+oc delete clusterdeployment ${clusterName} -n ${clusterName}
 ```
