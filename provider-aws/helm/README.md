@@ -6,62 +6,73 @@ Install Red Hat Advanced Cluster Management for Kubernetes and create a MultiClu
 
 Install Red Hat OpenShift GitOps.
 
-Connect to the openshift-gitops-server URL:
-- https://openshift-gitops-server-openshift-gitops.apps.openshift.sebastian-colomar.es/settings/repos
-
-Connect a new repository:
-- https://github.com/sebastian-colomar/hive-through-gitops
-
-Clone this git repository:
+Connect to the openshift-gitops-server URL of your ACM Hub cluster:
 ```
-git clone https://github.com/sebastian-colomar/hive-through-gitops
+HUB_NAME=hub
+DOMAIN=sebastian-colomar.com
+https://openshift-gitops-server-openshift-gitops.apps.${HUB_NAME}.${DOMAIN}/settings/repos
 ```
+
+Create a fork of this repository and connect it to GitOps:
+```
+USER=sebastian-colomar
+REPO=hive-through-gitops
+https://github.com/${USER}/${REPO}
+```
+
+Clone this git repository using a terminal with cluster-admin access to the Hub cluster and write access to Github:
+```
+git clone https://github.com/${USER}/${REPO}
+```
+
 Change directory into the repository folder:
 ```
-cd hive-through-gitops/
+cd ${REPO}
 ```
+
+Choose the method and the provider:
+```
+method=helm
+provider=aws
+```
+
 Choose the name of your cluster:
 ```
 clusterId=1
-```
-Launch the following commands:
-```
-method=helm
-
-provider=aws
-
-location=provider-${provider}/${method}
-
 clusterName=provider-${provider}-${method}-${clusterId}
 ```
-Modify the install-config.yaml file as needed:
-```
-touch ${location}/install-config.${clusterName}.yaml
 
-vi ${location}/install-config.${clusterName}.yaml
+Create a new folder for the cluster settings files:
 ```
+location=provider-${provider}/${method}
+mkdir -p ${location}/${clusterName}
+```
+
+Create the install-config.yaml:
+```
+vi ${location}/${clusterName}/install-config.yaml
+```
+
 Push the changes to the git repository:
 ```
-git add ${location}/install-config.${clusterName}.yaml
-
-git commit -m ${location}/install-config.${clusterName}.yaml
-
+git add ${location}/${clusterName}/install-config.yaml
+git commit -m ${location}/${clusterName}/install-config.yaml
 git push
 ```
-Modify the values.${clusterName}.yaml file as needed:
-```
-touch ${location}/values.${clusterName}.yaml
 
-vi ${location}/values.${clusterName}.yaml
+Create the values.yaml:
 ```
+vi ${location}/${clusterName}/values.yaml
+```
+
 Push the changes to the git repository:
 ```
-git add ${location}/values.${clusterName}.yaml
-
-git commit -m ${location}/values.${clusterName}.yaml
-
+git add ${location}/${clusterName}/values.yaml
+git commit -m ${location}/${clusterName}/values.yaml
 git push
 ```
+
+## TO BE CONTINUED
 Modify the ApplicationSet.yaml file as needed:
 ```
 touch ${location}/ApplicationSet.yaml
