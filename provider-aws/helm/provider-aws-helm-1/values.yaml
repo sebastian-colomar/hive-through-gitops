@@ -5,7 +5,7 @@ cluster:
   cloud1: Amazon
   cloud2: AWS
   clusterset: default
-  image: img4.16.14-multi-appsub
+  image: img4.17.45-multi-appsub
   name: provider-aws-helm-1
   platform: aws
   vendor: OpenShift
