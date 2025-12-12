@@ -7,8 +7,8 @@ spec:
   generators:
   - list:
       elements:
-      #- cluster: '1'
-      #- cluster: '2'
+      - cluster: '1'
+      - cluster: '2'
   syncPolicy:
     preserveResourcesOnDeletion: true
   template:
@@ -24,8 +24,8 @@ spec:
       source:
         helm:
           valueFiles:
-          - values.provider-aws-helm-{{ cluster }}.yaml
-        path: provider-aws/helm
+          - values.yaml
+        path: provider-aws/helm/provider-aws-helm-{{ cluster }}
         repoURL: git@github.com:sebastian-colomar/hive-through-gitops.git
         targetRevision: HEAD
       syncPolicy:
