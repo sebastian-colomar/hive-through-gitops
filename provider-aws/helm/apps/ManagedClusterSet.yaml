@@ -2,3 +2,5 @@ apiVersion: cluster.open-cluster-management.io/v1beta2
 kind: ManagedClusterSet
 metadata:
   name: gitops-spokes
+# ADD THE FOLLOWING LABEL TO EACH MANAGED CLUSTER THAT YOU WANT TO INCLUDE IN THIS CLUSTER SET:
+# cluster.open-cluster-management.io/clusterset=gitops-spokes
