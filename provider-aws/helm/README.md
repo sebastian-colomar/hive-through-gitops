@@ -36,16 +36,16 @@ method=helm
 provider=aws
 ```
 
-Choose the name of your cluster:
-```
-clusterId=1
-clusterName=provider-${provider}-${method}-${clusterId}
-```
-
 Create a new folder for the cluster settings files:
 ```
 location=provider-${provider}/${method}
 mkdir -p ${location}/${clusterName}
+```
+
+Choose the name of your cluster:
+```
+clusterId=1
+clusterName=provider-${provider}-${method}-${clusterId}
 ```
 
 Create the install-config.yaml:
@@ -79,23 +79,21 @@ vi ${location}/apps/ApplicationSet.yaml
 
 Push the changes to the git repository:
 ```
-git add ${location}/ApplicationSet.yaml
-git commit -m ${location}/ApplicationSet.yaml
+git add ${location}/apps/ApplicationSet.yaml
+git commit -m ${location}/apps/ApplicationSet.yaml
 git push
 ```
 
 Create a new project with the cluster name and create the necessary secrets for the installation configuration, platform credentials, Red Hat credentials and SSH private key:
 ```
-oc new-project ${clusterName}
-```
+clusterName=provider-${provider}-${method}-${clusterId}
 
-```
+oc new-project ${clusterName}
+
 secretSuffix=install-config
 oc create secret generic ${clusterName}-${secretSuffix} --from-file=${secretSuffix}.yaml=${location}/${clusterName}/${secretSuffix}.yaml --namespace ${clusterName}
 oc label secret ${clusterName}-${secretSuffix} --namespace=${clusterName} cluster.open-cluster-management.io/backup=cluster
-```
 
-```
 secretName=aws-creds
 secretNamespace=kube-system
 secretSuffix=aws-creds
@@ -104,9 +102,7 @@ for key in aws_access_key_id aws_secret_access_key;do
   oc patch secret ${clusterName}-${secretSuffix} --namespace=${clusterName} --patch='{"data":{"'${key}'":"'$(oc get secret ${secretName} --namespace=${secretNamespace} -ojsonpath="{.data.${key}}")'"}}'
 done
 oc label secret ${clusterName}-${secretSuffix} --namespace=${clusterName} cluster.open-cluster-management.io/backup=cluster cluster.open-cluster-management.io/copiedFromNamespace=${secretNamespace} cluster.open-cluster-management.io/copiedFromSecretName=${secretName}
-```
 
-```
 secretName=pull-secret
 secretNamespace=openshift-config
 secretSuffix=pull-secret
@@ -114,9 +110,7 @@ oc create secret generic ${clusterName}-${secretSuffix} --namespace ${clusterNam
 key=.dockerconfigjson
 oc patch secret ${clusterName}-${secretSuffix} --namespace=${clusterName} --patch='{"data":{"'${key}'":"'$(oc get secret ${secretName} --namespace=${secretNamespace} -o json | jq -r '.data["'$key'"]')'"}}'
 oc label secret ${clusterName}-${secretSuffix} --namespace=${clusterName} cluster.open-cluster-management.io/backup=cluster cluster.open-cluster-management.io/copiedFromNamespace=${secretNamespace} cluster.open-cluster-management.io/copiedFromSecretName=${secretName}
-```
 
-```
 secretSuffix=ssh-private-key
 oc create secret generic ${clusterName}-${secretSuffix} --namespace ${clusterName}
 key=ssh-privatekey
@@ -124,18 +118,22 @@ oc patch secret ${clusterName}-${secretSuffix} --namespace=${clusterName} --patc
 oc label secret ${clusterName}-${secretSuffix} --namespace=${clusterName} cluster.open-cluster-management.io/backup=cluster
 ```
 
-Apply the ApplicationSet:
+Repeat the previous procedure for all cluster names:
 ```
-oc apply -f ${location}/ApplicationSet.yaml
+clusterId=2
+```
+
+Once all the clusters have been preconfigured, apply the main Application (App of Apps):
+```
+oc apply -f ${location}/Application.yaml
 ```
 
 To prevent unintended changes in your cluster, you can comment out the cluster element from the ApplicationSet after the cluster has been successfully created:
 ```
-sed -i '/generators:/,/syncPolicy:/ {/- cluster: '\'"${clusterId}"\''/s/- cluster:/#- cluster:/}' ${location}/ApplicationSet.yaml
-git add ${location}/ApplicationSet.yaml
+sed -i '/generators:/,/syncPolicy:/ {/- cluster: '\'"${clusterId}"\''/s/- cluster:/#- cluster:/}' ${location}/apps/ApplicationSet.yaml
+git add ${location}/apps/ApplicationSet.yaml
 git commit -m "Remove cluster ${clusterId} from ApplicationSet"
 git push
-oc apply -f ${location}/ApplicationSet.yaml
 ```
 
 You can destroy the cluster from the graphical dashboard:
