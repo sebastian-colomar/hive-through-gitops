@@ -1,0 +1,9 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: allow-applicationset-placementdecisions
+  namespace: openshift-gitops
+rules:
+- apiGroups: ["cluster.open-cluster-management.io"]
+  resources: ["placementdecisions"]
+  verbs: ["get","list","watch"]
