@@ -2,7 +2,7 @@ apiVersion: apps.open-cluster-management.io/v1beta1
 kind: GitOpsCluster
 metadata:
   name: register-spokes-to-gitops
-  namespace: acm-gitops
+  namespace: openshift-gitops
 spec:
   argoServer:
     cluster: local-cluster
