@@ -15,7 +15,7 @@ gitops:
 machinepools:
   - 
     name: worker
-    replicas: 2
+    replicas: 3
     rootVolume:
       iops: 2000
       size: 100
