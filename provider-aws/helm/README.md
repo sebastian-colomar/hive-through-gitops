@@ -74,7 +74,7 @@ git push
 
 Create the ApplicationSet.yaml:
 ```
-vi ${location}/ApplicationSet.yaml
+vi ${location}/apps/ApplicationSet.yaml
 ```
 
 Push the changes to the git repository:
@@ -91,7 +91,7 @@ oc new-project ${clusterName}
 
 ```
 secretSuffix=install-config
-oc create secret generic ${clusterName}-${secretSuffix} --from-file=${secretSuffix}.yaml=${location}/${secretSuffix}.${clusterName}.yaml --namespace ${clusterName}
+oc create secret generic ${clusterName}-${secretSuffix} --from-file=${secretSuffix}.yaml=${location}/${clusterName}/${secretSuffix}.yaml --namespace ${clusterName}
 oc label secret ${clusterName}-${secretSuffix} --namespace=${clusterName} cluster.open-cluster-management.io/backup=cluster
 ```
 
