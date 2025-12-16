@@ -122,16 +122,22 @@ Repeat the previous procedure for all cluster names:
 ```
 clusterId=2
 ```
-
-Once all the clusters have been preconfigured, apply the main Application (App of Apps):
 ```
-oc apply -f ${location}/Application.yaml
+clusterId=3
+```
+```
+clusterId=4
+```
+
+Once all the clusters have been preconfigured, apply the ApplicationSet that will deploy the clusters:
+```
+oc apply -f ${location}/ApplicationSet.yaml
 ```
 
 To prevent unintended changes in your cluster, you can comment out the cluster element from the ApplicationSet after the cluster has been successfully created:
 ```
-sed -i '/generators:/,/syncPolicy:/ {/- cluster: '\'"${clusterId}"\''/s/- cluster:/#- cluster:/}' ${location}/apps/ApplicationSet.yaml
-git add ${location}/apps/ApplicationSet.yaml
+sed -i '/generators:/,/syncPolicy:/ {/- cluster: '\'"${clusterId}"\''/s/- cluster:/#- cluster:/}' ${location}/ApplicationSet.yaml
+git add ${location}/ApplicationSet.yaml
 git commit -m "Remove cluster ${clusterId} from ApplicationSet"
 git push
 ```
