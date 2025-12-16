@@ -1,0 +1,13 @@
+apiVersion: cluster.open-cluster-management.io/v1beta1
+kind: Placement
+metadata:
+  name: local-cluster
+  namespace: open-cluster-management-policies
+spec:
+  clusterSets:
+  - global
+  predicates:
+  - requiredClusterSelector:
+      labelSelector:
+        matchLabels:
+          local-cluster: "true"
