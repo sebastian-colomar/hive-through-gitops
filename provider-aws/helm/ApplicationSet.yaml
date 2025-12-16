@@ -9,6 +9,8 @@ spec:
       elements:
       - cluster: '1'
       - cluster: '2'
+      - cluster: '3'
+      - cluster: '4'
   syncPolicy:
     preserveResourcesOnDeletion: true
   template:
