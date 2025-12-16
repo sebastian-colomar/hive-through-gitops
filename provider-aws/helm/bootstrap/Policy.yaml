@@ -1,0 +1,40 @@
+apiVersion: policy.open-cluster-management.io/v1
+kind: Policy
+metadata:
+  name: bootstrap-hub-apps
+  namespace: open-cluster-management-policies
+spec:
+  remediationAction: enforce
+  disabled: false
+  policy-templates:
+  - objectDefinition:
+      apiVersion: policy.open-cluster-management.io/v1
+      kind: ConfigurationPolicy
+      metadata:
+        name: create-hub-apps-application
+      spec:
+        remediationAction: enforce
+        object-templates:
+        - complianceType: musthave
+          objectDefinition:
+            apiVersion: argoproj.io/v1alpha1
+            kind: Application
+            metadata:
+              name: provider-aws-helm
+              namespace: openshift-gitops
+            spec:
+              destination:
+                namespace: provider-aws-helm
+                server: https://kubernetes.default.svc
+              project: default
+              source:
+                path: provider-aws/helm/apps
+                repoURL: https://github.com/sebastian-colomar/hive-through-gitops
+                targetRevision: HEAD
+              syncPolicy:
+                automated:
+                  prune: true
+                  selfHeal: true
+                syncOptions:
+                  - ApplyOutOfSyncOnly=true
+                  - CreateNamespace=true
