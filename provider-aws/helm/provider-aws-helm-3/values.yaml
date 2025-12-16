@@ -1,0 +1,23 @@
+aws:
+  region: ap-south-1
+cluster:
+  baseDomain: sebastian-colomar.com
+  cloud1: Amazon
+  cloud2: AWS
+  clusterset: default
+  image: img4.17.45-multi-appsub
+  name: provider-aws-helm-3
+  platform: aws
+  vendor: OpenShift
+gitops:
+  name: openshift-gitops
+  namespace: openshift-gitops
+machinepools:
+  - 
+    name: worker
+    replicas: 3
+    rootVolume:
+      iops: 2000
+      size: 120
+      type: io1
+    type: t3a.large
