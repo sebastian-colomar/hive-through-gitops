@@ -7,7 +7,7 @@ compute:
   platform:
     aws:
       type: t3a.large
-  replicas: 2
+  replicas: 3
 controlPlane:
   architecture: amd64
   hyperthreading: Enabled
@@ -21,7 +21,7 @@ metadata:
 networking:
   clusterNetwork:
   - cidr: 10.132.0.0/16
-    hostPrefix: 23
+    hostPrefix: 20
   machineNetwork:
   - cidr: 10.2.0.0/16
   networkType: OVNKubernetes
