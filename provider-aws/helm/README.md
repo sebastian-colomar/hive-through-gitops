@@ -30,14 +30,10 @@ Change directory into the repository folder:
 cd ${REPO}
 ```
 
-Choose the method and the provider:
+Choose the method and the provider, and then create a new folder for the cluster settings files:
 ```
 method=helm
 provider=aws
-```
-
-Create a new folder for the cluster settings files:
-```
 location=provider-${provider}/${method}
 mkdir -p ${location}/${clusterName}
 ```
@@ -86,6 +82,10 @@ git push
 
 Create a new project with the cluster name and create the necessary secrets for the installation configuration, platform credentials, Red Hat credentials and SSH private key:
 ```
+method=helm
+provider=aws
+location=provider-${provider}/${method}
+
 clusterName=provider-${provider}-${method}-${clusterId}
 
 oc new-project ${clusterName}
