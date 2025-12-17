@@ -20,7 +20,7 @@ spec:
             apiVersion: argoproj.io/v1alpha1
             kind: Application
             metadata:
-              name: provider-aws-helm
+              name: bootstrap-hub-apps
               namespace: openshift-gitops
             spec:
               destination:
@@ -28,7 +28,7 @@ spec:
                 server: https://kubernetes.default.svc
               project: default
               source:
-                path: provider-aws/helm/apps/hub
+                path: provider-aws/helm/apps/02-hub
                 repoURL: https://github.com/sebastian-colomar/hive-through-gitops
                 targetRevision: HEAD
               syncPolicy:

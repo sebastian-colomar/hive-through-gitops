@@ -26,7 +26,7 @@ spec:
       source:
         helm:
           valueFiles:
-          - provider-aws-helm-{{ cluster }}/values.yaml
+          - clusters/provider-aws-helm-{{ cluster }}/values.yaml
         path: provider-aws/helm
         repoURL: https://github.com/sebastian-colomar/hive-through-gitops
         targetRevision: HEAD
