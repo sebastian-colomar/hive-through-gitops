@@ -1,0 +1,31 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: gitops-install-provider-aws-helm
+  namespace: openshift-gitops
+spec:
+  generators:
+  - clusterDecisionResource:
+      configMapRef: acm-placement
+      labelSelector:
+        matchLabels:
+          cluster.open-cluster-management.io/placement: provider-aws-helm
+  template:
+    metadata:
+      name: gitops-install-{{name}}
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/sebastian-colomar/hive-through-gitops
+        targetRevision: HEAD
+        path: apps/03-minions/gitops-install
+      destination:
+        server: "{{server}}"
+        namespace: openshift-operators
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+        - CreateNamespace=true
+        - ServerSideApply=true
