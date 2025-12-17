@@ -1,11 +1,11 @@
 apiVersion: cluster.open-cluster-management.io/v1beta1
 kind: Placement
 metadata:
-  name: gitops-targets
+  name: provider-aws-helm-odds
   namespace: openshift-gitops
 spec:
   clusterSets:
-    - gitops-spokes
+    - provider-aws-helm
   predicates:
     - requiredClusterSelector:
         labelSelector:
@@ -14,3 +14,4 @@ spec:
               operator: In
               values:
                 - provider-aws-helm-1
+                - provider-aws-helm-3

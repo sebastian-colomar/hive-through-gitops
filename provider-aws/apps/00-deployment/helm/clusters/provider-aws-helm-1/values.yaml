@@ -4,7 +4,7 @@ cluster:
   baseDomain: sebastian-colomar.com
   cloud1: Amazon
   cloud2: AWS
-  clusterset: default
+  clusterset: provider-aws-helm
   image: img4.17.45-multi-appsub
   name: provider-aws-helm-1
   platform: aws
