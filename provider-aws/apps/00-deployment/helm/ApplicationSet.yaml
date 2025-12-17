@@ -16,7 +16,7 @@ spec:
   template:
     metadata:
       labels:
-        applicationset: cluster-deployments
+        applicationset: provider-aws-helm
       name: provider-aws-helm-{{ cluster }}
     spec:
       destination:
@@ -27,7 +27,7 @@ spec:
         helm:
           valueFiles:
           - clusters/provider-aws-helm-{{ cluster }}/values.yaml
-        path: provider-aws/helm
+        path: provider-aws/apps/00-deployment/helm
         repoURL: https://github.com/sebastian-colomar/hive-through-gitops
         targetRevision: HEAD
       syncPolicy:

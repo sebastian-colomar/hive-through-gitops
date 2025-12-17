@@ -4,25 +4,11 @@
 
 Install Red Hat Advanced Cluster Management for Kubernetes and create a MultiClusterHub instance.
 
-Install Red Hat OpenShift GitOps.
-
-Connect to the openshift-gitops-server URL of your ACM Hub cluster:
-```
-HUB_NAME=hub
-DOMAIN=sebastian-colomar.com
-https://openshift-gitops-server-openshift-gitops.apps.${HUB_NAME}.${DOMAIN}/settings/repos
-```
-
-Create a fork of this repository and connect it to GitOps:
-```
-USER=sebastian-colomar
-REPO=hive-through-gitops
-https://github.com/${USER}/${REPO}
-```
+Install Red Hat OpenShift GitOps and connect this repository to GitOps.
 
 Clone this git repository using a terminal with cluster-admin access to the Hub cluster and write access to Github:
 ```
-git clone https://github.com/${USER}/${REPO}
+git clone https://github.com/sebastian-colomar/hive-through-gitops
 ```
 
 Change directory into the repository folder:
@@ -30,68 +16,26 @@ Change directory into the repository folder:
 cd ${REPO}
 ```
 
-Choose the method and the provider, and then create a new folder for the cluster settings files:
-```
-method=helm
-provider=aws
-location=provider-${provider}/${method}
-mkdir -p ${location}/${clusterName}
-```
+If necessary, modify the current cluster configuration and settings, then commit the changes to the remote repository and proceed.
+You may need to fork this repository in order to have write permissions.
 
-Choose the name of your cluster:
-```
-clusterId=1
-clusterName=provider-${provider}-${method}-${clusterId}
-```
-
-Create the install-config.yaml:
-```
-vi ${location}/${clusterName}/install-config.yaml
-```
-
-Push the changes to the git repository:
-```
-git add ${location}/${clusterName}/install-config.yaml
-git commit -m ${location}/${clusterName}/install-config.yaml
-git push
-```
-
-Create the values.yaml:
-```
-vi ${location}/${clusterName}/values.yaml
-```
-
-Push the changes to the git repository:
-```
-git add ${location}/${clusterName}/values.yaml
-git commit -m ${location}/${clusterName}/values.yaml
-git push
-```
-
-Create the ApplicationSet.yaml:
-```
-vi ${location}/apps/ApplicationSet.yaml
-```
-
-Push the changes to the git repository:
-```
-git add ${location}/apps/ApplicationSet.yaml
-git commit -m ${location}/apps/ApplicationSet.yaml
-git push
-```
-
+Now you need to prepare the necessary resources before the actual cluster deployment.
 Create a new project with the cluster name and create the necessary secrets for the installation configuration, platform credentials, Red Hat credentials and SSH private key:
 ```
+for N in {1..4};do
+
+clusterId=$N
+
 method=helm
 provider=aws
-location=provider-${provider}/${method}
+location=provider-${provider}/apps/00-deployment/${method}
 
 clusterName=provider-${provider}-${method}-${clusterId}
 
 oc new-project ${clusterName}
 
 secretSuffix=install-config
-oc create secret generic ${clusterName}-${secretSuffix} --from-file=${secretSuffix}.yaml=${location}/${clusterName}/${secretSuffix}.yaml --namespace ${clusterName}
+oc create secret generic ${clusterName}-${secretSuffix} --from-file=${secretSuffix}.yaml=${location}/clusters/${clusterName}/${secretSuffix}.yaml --namespace ${clusterName}
 oc label secret ${clusterName}-${secretSuffix} --namespace=${clusterName} cluster.open-cluster-management.io/backup=cluster
 
 secretName=aws-creds
@@ -116,17 +60,8 @@ oc create secret generic ${clusterName}-${secretSuffix} --namespace ${clusterNam
 key=ssh-privatekey
 oc patch secret ${clusterName}-${secretSuffix} --namespace=${clusterName} --patch='{"data":{"'${key}'":"'$(cat ${HOME}/.ssh/id_rsa | base64 | tr -d '\n')'"}}'
 oc label secret ${clusterName}-${secretSuffix} --namespace=${clusterName} cluster.open-cluster-management.io/backup=cluster
-```
 
-Repeat the previous procedure for all cluster names:
-```
-clusterId=2
-```
-```
-clusterId=3
-```
-```
-clusterId=4
+done
 ```
 
 Once all the clusters have been preconfigured, apply the ApplicationSet that will deploy the clusters:
