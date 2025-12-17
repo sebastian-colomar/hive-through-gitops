@@ -77,7 +77,10 @@ git commit -m "Remove cluster ${clusterId} from ApplicationSet"
 git push
 ```
 
-You can destroy the cluster from the graphical dashboard:
+Alternatively, you can safely delete the ApplicationSet once all the clusters have been successfully created. 
+This will prevent any interference with the existing clusters.
+
+When you need to destroy the cluster, you can do it from the graphical dashboard:
 - https://console-openshift-console.apps.openshift.sebastian-colomar.es/multicloud/infrastructure/clusters/managed
 
 Alternatively, you can use the following command:
