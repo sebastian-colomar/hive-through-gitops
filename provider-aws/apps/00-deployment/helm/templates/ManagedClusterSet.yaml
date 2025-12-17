@@ -2,7 +2,7 @@ apiVersion: cluster.open-cluster-management.io/v1beta2
 kind: ManagedClusterSet
 metadata:
   annotations:
-    cluster.open-cluster-management.io/submariner-broker-ns: default-broker
+    cluster.open-cluster-management.io/submariner-broker-ns: {{ .Values.cluster.clusterset }}-broker
   finalizers:
     - cluster.open-cluster-management.io/managedclusterset-clusterrole
     - cluster.open-cluster-management.io/submariner-cleanup
