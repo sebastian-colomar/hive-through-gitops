@@ -1,0 +1,35 @@
+apiVersion: work.open-cluster-management.io/v1alpha1
+kind: ManifestWorkReplicaSet
+metadata:
+  name: phpinfo-helm-provider-aws-helm-evens
+  namespace: openshift-gitops
+spec:
+  manifestWorkTemplate:
+    workload:
+      manifests:
+      - apiVersion: argoproj.io/v1alpha1
+        kind: Application
+        metadata:
+          name: phpinfo-helm
+          namespace: openshift-gitops
+        spec:
+          destination:
+            namespace: phpinfo-helm
+            server: https://kubernetes.default.svc
+          project: default
+          source:
+            helm:
+              valueFiles:
+              - values.yaml
+            path: main/apps/helm
+            repoURL: https://github.com/sebastian-colomar/phpinfo
+            targetRevision: HEAD
+          syncPolicy:
+            automated:
+              prune: true
+              selfHeal: true
+            syncOptions:
+            - CreateNamespace=true
+            - ServerSideApply=true
+  placementRefs:
+  - name: provider-aws-helm-evens
