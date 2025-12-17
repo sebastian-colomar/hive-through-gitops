@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: bootstrap-hub-apps
+  namespace: openshift-gitops
+spec:
+  destination:
+    namespace: provider-aws-helm
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: provider-aws/apps/02-hub
+    repoURL: https://github.com/sebastian-colomar/hive-through-gitops
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - ApplyOutOfSyncOnly=true
+      - CreateNamespace=true
