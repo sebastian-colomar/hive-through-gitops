@@ -1,0 +1,17 @@
+apiVersion: cluster.open-cluster-management.io/v1beta1
+kind: Placement
+metadata:
+  name: provider-aws-helm-evens
+  namespace: openshift-gitops
+spec:
+  clusterSets:
+    - provider-aws-helm
+  predicates:
+    - requiredClusterSelector:
+        labelSelector:
+          matchExpressions:
+            - key: name
+              operator: In
+              values:
+                - provider-aws-helm-2
+                - provider-aws-helm-4
