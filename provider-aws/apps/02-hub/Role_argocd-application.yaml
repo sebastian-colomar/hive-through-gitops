@@ -1,7 +1,7 @@
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
-  name: allow-application-manifestworkreplicasets
+  name: allow-argocd-application-manifestworkreplicasets
   namespace: openshift-gitops
 rules:
 - apiGroups: ["work.open-cluster-management.io"]
