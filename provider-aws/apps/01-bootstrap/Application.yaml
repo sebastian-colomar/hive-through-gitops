@@ -9,7 +9,7 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: provider-aws/apps/02-hub
+    path: provider-aws/apps/02-infra
     repoURL: https://github.com/sebastian-colomar/hive-through-gitops
     targetRevision: HEAD
   syncPolicy:
