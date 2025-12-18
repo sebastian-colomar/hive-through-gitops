@@ -9,6 +9,8 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
+    directory:
+      recurse: true
     path: provider-aws/apps/02-infra
     repoURL: https://github.com/sebastian-colomar/hive-through-gitops
     targetRevision: HEAD
