@@ -1,0 +1,16 @@
+apiVersion: cluster.open-cluster-management.io/v1beta1
+kind: Placement
+metadata:
+  name: xxx-app
+  namespace: openshift-gitops
+spec:
+  clusterSets:
+    - dev-env
+  predicates:
+    - requiredClusterSelector:
+        labelSelector:
+          matchExpressions:
+            - key: active
+              operator: In
+              values:
+                - true
