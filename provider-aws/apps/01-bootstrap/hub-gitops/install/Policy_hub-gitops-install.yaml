@@ -29,7 +29,7 @@ spec:
       spec:
         remediationAction: enforce
         object-templates:
-        - complianceType: mustonlyhave
+        - complianceType: musthave
           objectDefinition:
             apiVersion: operators.coreos.com/v1
             kind: OperatorGroup
@@ -75,3 +75,36 @@ spec:
             kind: CustomResourceDefinition
             metadata:
               name: argocds.argoproj.io
+  - objectDefinition:
+      apiVersion: policy.open-cluster-management.io/v1
+      kind: ConfigurationPolicy
+      metadata:
+        name: gitops-argocd-ns
+      spec:
+        remediationAction: enforce
+        object-templates:
+        - complianceType: musthave
+          objectDefinition:
+            apiVersion: v1
+            kind: Namespace
+            metadata:
+              name: openshift-gitops
+  - objectDefinition:
+      apiVersion: policy.open-cluster-management.io/v1
+      kind: ConfigurationPolicy
+      metadata:
+        name: gitops-argocd
+      spec:
+        remediationAction: enforce
+        object-templates:
+        - complianceType: musthave
+          objectDefinition:
+            apiVersion: argoproj.io/v1beta1
+            kind: ArgoCD
+            metadata:
+              name: openshift-gitops
+              namespace: openshift-gitops
+            spec:
+              server:
+                route:
+                  enabled: true
