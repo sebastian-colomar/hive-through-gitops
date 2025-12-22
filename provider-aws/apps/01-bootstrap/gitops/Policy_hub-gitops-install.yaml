@@ -1,7 +1,7 @@
 apiVersion: policy.open-cluster-management.io/v1
 kind: Policy
 metadata:
-  name: install-gitops
+  name: hub-gitops-install
   namespace: open-cluster-management-policies
 spec:
   remediationAction: enforce
@@ -29,7 +29,7 @@ spec:
       spec:
         remediationAction: enforce
         object-templates:
-        - complianceType: musthave
+        - complianceType: mustonlyhave
           objectDefinition:
             apiVersion: operators.coreos.com/v1
             kind: OperatorGroup
@@ -61,3 +61,17 @@ spec:
               channel: latest
               source: redhat-operators
               sourceNamespace: openshift-marketplace
+  - objectDefinition:
+      apiVersion: policy.open-cluster-management.io/v1
+      kind: ConfigurationPolicy
+      metadata:
+        name: gitops-crd-present
+      spec:
+        remediationAction: inform
+        object-templates:
+        - complianceType: musthave
+          objectDefinition:
+            apiVersion: apiextensions.k8s.io/v1
+            kind: CustomResourceDefinition
+            metadata:
+              name: argocds.argoproj.io
