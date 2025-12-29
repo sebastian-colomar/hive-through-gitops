@@ -1,7 +1,7 @@
 aws:
   region: ap-south-1
 cluster:
-  baseDomain: sebastian-colomar.com
+  baseDomain: sebastian-colomar.es
   cloud1: Amazon
   cloud2: AWS
   clusterset: provider-aws-helm
