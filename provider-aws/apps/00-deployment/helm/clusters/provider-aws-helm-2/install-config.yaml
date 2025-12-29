@@ -6,7 +6,7 @@ compute:
   name: worker
   platform:
     aws:
-      type: t3a.large
+      type: t4g.large
   replicas: 3
 controlPlane:
   architecture: amd64
@@ -14,7 +14,7 @@ controlPlane:
   name: master
   platform:
     aws:
-      type: t3a.xlarge
+      type: t4g.xlarge
   replicas: 3
 metadata:
   name: provider-aws-helm-2

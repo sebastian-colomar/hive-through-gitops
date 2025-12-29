@@ -14,6 +14,6 @@ spec:
         iops: 3000
         size: 100
         type: gp3
-      type: m6a.large
+      type: t4g.large
   replicas: 3
 {{- end }}
