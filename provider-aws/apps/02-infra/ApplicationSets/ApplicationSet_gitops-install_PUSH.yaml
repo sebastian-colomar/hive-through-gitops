@@ -18,7 +18,7 @@ spec:
       source:
         repoURL: https://github.com/sebastian-colomar/hive-through-gitops
         targetRevision: HEAD
-        path: provider-aws/apps/02-infra/gitops-install
+        path: provider-aws/apps/03-apps/gitops-install
       destination:
         server: "{{server}}"
         namespace: openshift-operators
