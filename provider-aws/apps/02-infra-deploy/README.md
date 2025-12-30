@@ -2,5 +2,5 @@ Once GitOps is installed, you can create the app-of-apps for the hub cluster to 
 For example, one of these ApplicationSets will install GitOps on the child clusters. 
 To do so, simply run the following command:
 ```
-oc apply -f provider-aws/apps/00-hub-bootstrap/02-hub-infra/install
+oc apply -f provider-aws/apps/02-infra-deploy/bootstrap
 ```

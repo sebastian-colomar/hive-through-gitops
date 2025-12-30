@@ -28,7 +28,7 @@ clusterId=$N
 
 method=helm
 provider=aws
-location=provider-${provider}/apps/01-minions-deployment/${method}
+location=provider-${provider}/apps/01-minions-deploy/${method}
 
 clusterName=provider-${provider}-${method}-${clusterId}
 

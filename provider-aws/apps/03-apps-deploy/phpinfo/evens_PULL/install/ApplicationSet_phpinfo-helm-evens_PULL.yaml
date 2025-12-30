@@ -10,7 +10,6 @@ spec:
       labelSelector:
         matchLabels:
           cluster.open-cluster-management.io/placement: provider-aws-helm-evens
-      requeueAfterSeconds: 30
   template:
     metadata:
       annotations:
