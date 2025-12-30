@@ -13,7 +13,7 @@ git clone https://github.com/sebastian-colomar/hive-through-gitops
 
 Change directory into the repository folder:
 ```
-cd ${REPO}
+cd hive-through-gitops
 ```
 
 If necessary, modify the current cluster configuration and settings, then commit the changes to the remote repository and proceed.
