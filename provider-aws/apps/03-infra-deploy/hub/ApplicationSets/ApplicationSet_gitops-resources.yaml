@@ -1,0 +1,33 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: gitops-resources
+  namespace: openshift-gitops
+spec:
+  generators:
+  - clusterDecisionResource:
+      configMapRef: acm-placement
+      labelSelector:
+        matchLabels:
+          cluster.open-cluster-management.io/placement: provider-aws-helm
+  template:
+    metadata:
+      annotations:
+        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+      name: gitops-resources-{{name}}
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/sebastian-colomar/hive-through-gitops
+        targetRevision: HEAD
+        path: provider-aws/apps/03-infra-deploy/minions/gitops-resources
+      destination:
+        server: "{{server}}"
+        namespace: openshift-gitops
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+        - CreateNamespace=true
+        - ServerSideApply=true
