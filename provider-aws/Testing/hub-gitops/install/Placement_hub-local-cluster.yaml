@@ -8,4 +8,4 @@ spec:
   - requiredClusterSelector:
       labelSelector:
         matchLabels:
-          local-cluster: "true"
+          name: local-cluster
