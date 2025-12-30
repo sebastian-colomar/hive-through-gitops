@@ -1,20 +1,20 @@
 apiVersion: v1
 baseDomain: sebastian-colomar.com
 compute:
-- architecture: amd64
+- architecture: aarch64
   hyperthreading: Enabled
   name: worker
   platform:
     aws:
-      type: t3a.large
+      type: t4g.large
   replicas: 3
 controlPlane:
-  architecture: amd64
+  architecture: aarch64
   hyperthreading: Enabled
   name: master
   platform:
     aws:
-      type: t3a.xlarge
+      type: t4g.xlarge
   replicas: 3
 metadata:
   name: provider-aws-helm-1
