@@ -12,6 +12,8 @@ spec:
           cluster.open-cluster-management.io/placement: provider-aws-helm-odds
   template:
     metadata:
+      annotations:
+        argocd.argoproj.io/skip-reconcile: "true" 
       name: phpinfo-helm-{{name}}
     spec:
       destination:
