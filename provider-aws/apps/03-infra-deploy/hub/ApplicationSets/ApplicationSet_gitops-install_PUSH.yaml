@@ -12,6 +12,8 @@ spec:
           cluster.open-cluster-management.io/placement: provider-aws-helm
   template:
     metadata:
+      annotations:
+        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
       name: gitops-install-{{name}}
     spec:
       project: default
