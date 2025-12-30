@@ -19,7 +19,7 @@ spec:
                 kind: OperatorGroup
                 metadata:
                   name: openshift-gitops-operator
-                  namespace: openshift-gitops-operator
+                  namespace: openshift-operators
                 spec: {}
           pruneObjectBehavior: None
           remediationAction: enforce
@@ -37,7 +37,7 @@ spec:
                 kind: Subscription
                 metadata:
                   name: openshift-gitops-operator
-                  namespace: openshift-gitops-operator
+                  namespace: openshift-operators
                 spec:
                   name: openshift-gitops-operator
                   channel: latest
