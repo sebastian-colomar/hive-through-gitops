@@ -21,7 +21,7 @@ spec:
         path: provider-aws/apps/03-apps/gitops-install
       destination:
         server: "{{server}}"
-        namespace: openshift-operators
+        namespace: openshift-gitops-operator
       syncPolicy:
         automated:
           prune: true
