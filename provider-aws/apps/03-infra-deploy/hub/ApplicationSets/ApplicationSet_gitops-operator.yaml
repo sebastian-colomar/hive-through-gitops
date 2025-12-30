@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: gitops-install-provider-aws-helm
+  name: gitops-operator
   namespace: openshift-gitops
 spec:
   generators:
@@ -14,13 +14,13 @@ spec:
     metadata:
       annotations:
         argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-      name: gitops-install-{{name}}
+      name: gitops-operator-{{name}}
     spec:
       project: default
       source:
         repoURL: https://github.com/sebastian-colomar/hive-through-gitops
         targetRevision: HEAD
-        path: provider-aws/apps/03-infra-deploy/minions/gitops
+        path: provider-aws/apps/03-infra-deploy/minions/gitops-operator
       destination:
         server: "{{server}}"
         namespace: openshift-gitops-operator
