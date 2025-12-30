@@ -27,7 +27,7 @@ spec:
         helm:
           valueFiles:
           - clusters/provider-aws-helm-{{ cluster }}/values.yaml
-        path: provider-aws/apps/00-deployment/helm
+        path: provider-aws/apps/01-minions-deployment/helm
         repoURL: https://github.com/sebastian-colomar/hive-through-gitops
         targetRevision: HEAD
       syncPolicy:
