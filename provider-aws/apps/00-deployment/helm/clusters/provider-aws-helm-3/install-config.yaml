@@ -1,7 +1,7 @@
 apiVersion: v1
 baseDomain: sebastian-colomar.com
 compute:
-- architecture: aarch64
+- architecture: arm64
   hyperthreading: Enabled
   name: worker
   platform:
@@ -9,7 +9,7 @@ compute:
       type: t4g.large
   replicas: 3
 controlPlane:
-  architecture: aarch64
+  architecture: arm64
   hyperthreading: Enabled
   name: master
   platform:
