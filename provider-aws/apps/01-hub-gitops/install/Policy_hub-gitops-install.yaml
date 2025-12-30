@@ -10,31 +10,6 @@ spec:
         apiVersion: policy.open-cluster-management.io/v1
         kind: ConfigurationPolicy
         metadata:
-          name: gitops-operator-sub
-        spec:
-          object-templates:
-            - complianceType: musthave
-              objectDefinition:
-                apiVersion: operators.coreos.com/v1alpha1
-                kind: Subscription
-                metadata:
-                  labels:
-                    operators.coreos.com/openshift-gitops-operator.openshift-gitops-operator: ''
-                  name: openshift-gitops-operator
-                  namespace: openshift-gitops-operator
-                spec:
-                  channel: latest
-                  installPlanApproval: Automatic
-                  name: openshift-gitops-operator
-                  source: redhat-operators
-                  sourceNamespace: openshift-marketplace
-          pruneObjectBehavior: None
-          remediationAction: enforce
-          severity: high
-    - objectDefinition:
-        apiVersion: policy.open-cluster-management.io/v1
-        kind: ConfigurationPolicy
-        metadata:
           name: gitops-operator-ns
         spec:
           object-templates:
@@ -67,16 +42,44 @@ spec:
         apiVersion: policy.open-cluster-management.io/v1
         kind: ConfigurationPolicy
         metadata:
-          name: gitops-gs
+          name: gitops-og
         spec:
           object-templates:
             - complianceType: musthave
               objectDefinition:
-                apiVersion: pipelines.openshift.io/v1alpha1
-                kind: GitopsService
+                apiVersion: operators.coreos.com/v1
+                kind: OperatorGroup
                 metadata:
-                  name: cluster
+                  name: openshift-gitops-operator-group
+                  namespace: openshift-gitops-operator
+                spec:
+                  upgradeStrategy: Default
           pruneObjectBehavior: None
           remediationAction: enforce
           severity: high          
+    - objectDefinition:
+        apiVersion: policy.open-cluster-management.io/v1
+        kind: ConfigurationPolicy
+        metadata:
+          name: gitops-sub
+        spec:
+          object-templates:
+            - complianceType: musthave
+              objectDefinition:
+                apiVersion: operators.coreos.com/v1alpha1
+                kind: Subscription
+                metadata:
+                  labels:
+                    operators.coreos.com/openshift-gitops-operator.openshift-gitops-operator: ''
+                  name: openshift-gitops-operator
+                  namespace: openshift-gitops-operator
+                spec:
+                  channel: latest
+                  installPlanApproval: Automatic
+                  name: openshift-gitops-operator
+                  source: redhat-operators
+                  sourceNamespace: openshift-marketplace
+          pruneObjectBehavior: None
+          remediationAction: enforce
+          severity: high
   remediationAction: enforce
