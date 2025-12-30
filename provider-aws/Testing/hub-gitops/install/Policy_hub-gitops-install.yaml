@@ -18,14 +18,32 @@ spec:
                 apiVersion: operators.coreos.com/v1alpha1
                 kind: Subscription
                 metadata:
+                  labels:
+                    operators.coreos.com/openshift-gitops-operator.openshift-gitops-operator: ''
                   name: openshift-gitops-operator
-                  namespace: openshift-operators
+                  namespace: openshift-gitops-operator
                 spec:
-                  name: openshift-gitops-operator
                   channel: latest
                   installPlanApproval: Automatic
+                  name: openshift-gitops-operator
                   source: redhat-operators
                   sourceNamespace: openshift-marketplace
+          pruneObjectBehavior: None
+          remediationAction: enforce
+          severity: high
+    - objectDefinition:
+        apiVersion: policy.open-cluster-management.io/v1
+        kind: ConfigurationPolicy
+        metadata:
+          name: gitops-operator-ns
+        spec:
+          object-templates:
+            - complianceType: musthave
+              objectDefinition:
+                apiVersion: v1
+                kind: Namespace
+                metadata:
+                  name: openshift-gitops-operator
           pruneObjectBehavior: None
           remediationAction: enforce
           severity: high
@@ -49,22 +67,15 @@ spec:
         apiVersion: policy.open-cluster-management.io/v1
         kind: ConfigurationPolicy
         metadata:
-          name: gitops-argocd
+          name: gitops-gs
         spec:
           object-templates:
             - complianceType: musthave
               objectDefinition:
-                apiVersion: argoproj.io/v1alpha1
-                kind: ArgoCD
+                apiVersion: pipelines.openshift.io/v1alpha1
+                kind: GitopsService
                 metadata:
-                  name: openshift-gitops
-                  namespace: openshift-gitops
-                spec:
-                  server:
-                    route:
-                      enabled: true
-                  dex:
-                    openShiftOAuth: true
+                  name: cluster
           pruneObjectBehavior: None
           remediationAction: enforce
           severity: high          
