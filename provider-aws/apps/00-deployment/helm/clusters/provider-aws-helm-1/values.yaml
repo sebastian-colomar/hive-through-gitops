@@ -5,7 +5,7 @@ cluster:
   cloud1: Amazon
   cloud2: AWS
   clusterset: provider-aws-helm
-  image: img4.17.45-multi-appsub
+  image: img4.20.8-multi-appsub
   name: provider-aws-helm-1
   platform: aws
   vendor: OpenShift
@@ -20,4 +20,4 @@ machinepools:
       iops: 2000
       size: 100
       type: io1
-    type: t3a.large
+    type: t4g.large
