@@ -1,4 +1,4 @@
-In order to install GitOps in the ACM Hub cluster, just run the following command:
+To install GitOps on the ACM Hub cluster using an ACM policy, simply run the following command:
 ```
-oc apply -f provider-aws/apps/01-bootstrap/hub-gitops/install
+oc apply -f provider-aws/apps/01-bootstrap/01-hub-gitops/install
 ```
