@@ -33,6 +33,22 @@ spec:
         apiVersion: policy.open-cluster-management.io/v1
         kind: ConfigurationPolicy
         metadata:
+          name: gitops-ns
+        spec:
+          object-templates:
+            - complianceType: musthave
+              objectDefinition:
+                apiVersion: v1
+                kind: Namespace
+                metadata:
+                  name: openshift-gitops
+          pruneObjectBehavior: None
+          remediationAction: enforce
+          severity: high
+    - objectDefinition:
+        apiVersion: policy.open-cluster-management.io/v1
+        kind: ConfigurationPolicy
+        metadata:
           name: gitops-argocd
         spec:
           object-templates:
@@ -49,5 +65,5 @@ spec:
                       enabled: true
           pruneObjectBehavior: None
           remediationAction: enforce
-          severity: high
+          severity: high          
   remediationAction: enforce
