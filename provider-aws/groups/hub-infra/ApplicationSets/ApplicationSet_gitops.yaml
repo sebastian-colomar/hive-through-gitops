@@ -20,7 +20,7 @@ spec:
       source:
         repoURL: https://github.com/sebastian-colomar/hive-through-gitops
         targetRevision: HEAD
-        path: provider-aws/apps/03-infra-deploy/managed-clusters/gitops
+        path: provider-aws/components/managed-cluster-gitops
       destination:
         server: "{{server}}"
         namespace: openshift-gitops-operator

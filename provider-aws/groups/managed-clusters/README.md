@@ -28,14 +28,14 @@ clusterId=$N
 
 method=helm
 provider=aws
-location=provider-${provider}/apps/02-managed-clusters-deploy/${method}
+clusterLocation=provider-${provider}/clusters/managed
 
 clusterName=provider-${provider}-${method}-${clusterId}
 
 oc new-project ${clusterName}
 
 secretSuffix=install-config
-oc create secret generic ${clusterName}-${secretSuffix} --from-file=${secretSuffix}.yaml=${location}/clusters/${clusterName}/${secretSuffix}.yaml --namespace ${clusterName}
+oc create secret generic ${clusterName}-${secretSuffix} --from-file=${secretSuffix}.yaml=${clusterLocation}/${clusterName}/${secretSuffix}.yaml --namespace ${clusterName}
 oc label secret ${clusterName}-${secretSuffix} --namespace=${clusterName} cluster.open-cluster-management.io/backup=cluster
 
 secretName=aws-creds
@@ -66,13 +66,13 @@ done
 
 Once all the clusters have been preconfigured, apply the ApplicationSet that will deploy the clusters:
 ```
-oc apply -f ${location}/ApplicationSet.yaml
+oc apply -f provider-${provider}/groups/managed-clusters/ApplicationSet.yaml
 ```
 
 To prevent unintended changes in your cluster, you can comment out the cluster element from the ApplicationSet after the cluster has been successfully created:
 ```
-sed -i '/generators:/,/syncPolicy:/ {/- cluster: '\'"${clusterId}"\''/s/- cluster:/#- cluster:/}' ${location}/ApplicationSet.yaml
-git add ${location}/ApplicationSet.yaml
+sed -i '/generators:/,/syncPolicy:/ {/- cluster: '\'"${clusterId}"\''/s/- cluster:/#- cluster:/}' provider-${provider}/groups/managed-clusters/ApplicationSet.yaml
+git add provider-${provider}/groups/managed-clusters/ApplicationSet.yaml
 git commit -m "Remove cluster ${clusterId} from ApplicationSet"
 git push
 ```

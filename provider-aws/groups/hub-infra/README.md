@@ -2,5 +2,5 @@ Once GitOps is installed on the hub cluster and the child managed clusters have 
 
 To create the app-of-apps for the hub cluster, simply run the following command:
 ```
-oc apply -f provider-aws/apps/03-infra-deploy/bootstrap
+oc apply -f provider-aws/clusters/hub/bootstrap
 ```
