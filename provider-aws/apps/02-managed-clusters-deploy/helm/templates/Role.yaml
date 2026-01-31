@@ -27,6 +27,7 @@ rules:
   verbs:
   - create
   - delete
+  - patch
 - apiGroups:
   - internal.open-cluster-management.io
   resources:
