@@ -2,7 +2,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   name: allow-argocd
-  namespace: openshift-gitops
+  namespace: open-cluster-management-policies
 subjects:
 - kind: ServiceAccount
   name: openshift-gitops-argocd-application-controller
