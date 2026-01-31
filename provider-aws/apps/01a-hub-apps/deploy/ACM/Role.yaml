@@ -2,7 +2,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
   name: allow-argocd
-  namespace: openshift-gitops
+  namespace: open-cluster-management-policies
 rules:
 - apiGroups: ["policy.open-cluster-management.io"]
   resources: ["placementbindings"]
