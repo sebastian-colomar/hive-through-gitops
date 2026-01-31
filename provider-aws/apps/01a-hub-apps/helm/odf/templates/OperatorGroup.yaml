@@ -3,6 +3,7 @@ kind: OperatorGroup
 metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "2"
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
   name: openshift-storage-operatorgroup
   namespace: openshift-storage
 spec:
