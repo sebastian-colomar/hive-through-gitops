@@ -1,0 +1,31 @@
+apiVersion: policy.open-cluster-management.io/v1
+kind: Policy
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
+  name: odf-label-worker-nodes
+  namespace: openshift-storage
+spec:
+  disabled: false
+  policy-templates:
+    - objectDefinition:
+        apiVersion: policy.open-cluster-management.io/v1
+        kind: ConfigurationPolicy
+        metadata:
+          name: odf-label-worker-nodes
+        spec:
+          object-templates:
+            - complianceType: musthave
+              objectDefinition:
+                apiVersion: v1
+                kind: Node
+                metadata:
+                  labels:
+                    cluster.ocs.openshift.io/openshift-storage: ""
+              matchExpressions:
+                - key: node-role.kubernetes.io/worker
+                  operator: Exists
+          pruneObjectBehavior: None
+          remediationAction: enforce
+          severity: high
+  remediationAction: enforce
