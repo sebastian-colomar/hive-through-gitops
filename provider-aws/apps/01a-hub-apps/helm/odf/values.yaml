@@ -1,2 +1,2 @@
 channel: stable-4.20
-monitoring: true
+monitoring: "true"
