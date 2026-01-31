@@ -1,0 +1,12 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: odf-node-labeler
+subjects:
+- kind: ServiceAccount
+  name: odf-node-labeler
+  namespace: openshift-storage
+roleRef:
+  kind: ClusterRole
+  name: odf-node-labeler
+  apiGroup: rbac.authorization.k8s.io
