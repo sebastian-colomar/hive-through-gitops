@@ -1,7 +1,7 @@
 apiVersion: policy.open-cluster-management.io/v1
 kind: Policy
 metadata:
-  name: hub-repo-secret
+  name: repo-hub-apps
   namespace: open-cluster-management-policies
 spec:
   disabled: false
