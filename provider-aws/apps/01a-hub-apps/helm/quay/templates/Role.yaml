@@ -1,0 +1,11 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: allow-argocd
+  namespace: {{ .Values.namespace }}
+rules:
+- apiGroups: ["quay.redhat.com"]
+  resources:
+  - quayregistries
+  verbs:
+  - patch
