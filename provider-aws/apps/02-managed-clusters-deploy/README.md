@@ -22,7 +22,7 @@ You may need to fork this repository in order to have write permissions.
 Now you need to prepare the necessary resources before the actual cluster deployment.
 Create a new project with the cluster name and create the necessary secrets for the installation configuration, platform credentials, Red Hat credentials and SSH private key:
 ```
-for N in {1..4};do
+for N in {1..2};do
 
 clusterId=$N
 
