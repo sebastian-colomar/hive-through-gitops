@@ -5,7 +5,7 @@ metadata:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
     argocd.argoproj.io/sync-wave: "1"
   name: odf-label-worker-nodes
-  namespace: openshift-storage
+  namespace: open-cluster-management-policies
 spec:
   disabled: false
   policy-templates:
