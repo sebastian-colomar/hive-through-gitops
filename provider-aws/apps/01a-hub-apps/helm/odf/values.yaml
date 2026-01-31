@@ -1,2 +1,4 @@
 channel: stable-4.20
 monitoring: "true"
+storage: 2Ti
+storageClassName: gp3-csi
