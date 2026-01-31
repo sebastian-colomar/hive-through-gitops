@@ -1,0 +1,9 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: allow-argocd-application-placementbindings
+  namespace: openshift-gitops
+rules:
+- apiGroups: ["policy.open-cluster-management.io"]
+  resources: ["placementbindings"]
+  verbs: ["patch"]
