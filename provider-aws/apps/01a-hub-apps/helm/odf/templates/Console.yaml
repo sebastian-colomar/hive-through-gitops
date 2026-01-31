@@ -7,4 +7,9 @@ metadata:
     argocd.argoproj.io/sync-options: ServerSideApply=true
 spec:
   plugins:
+  - acm
+  - gitops-plugin
+  - mce
+  - monitoring-plugin  
+  - networking-console-plugin
   - odf-console
