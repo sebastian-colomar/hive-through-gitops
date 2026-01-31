@@ -3,7 +3,7 @@ kind: Policy
 metadata:
   annotations:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-    argocd.argoproj.io/sync-wave: "1"
+    argocd.argoproj.io/sync-wave: "10"
   name: odf-label-worker-nodes
   namespace: open-cluster-management-policies
 spec:
