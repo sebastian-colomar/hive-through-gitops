@@ -2,7 +2,7 @@ apiVersion: policy.open-cluster-management.io/v1
 kind: Policy
 metadata:
   name: repo-hub-apps
-  namespace: open-cluster-management-policies
+  namespace: openshift-gitops
 spec:
   disabled: false
   policy-templates:
