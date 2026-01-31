@@ -1,7 +1,6 @@
 aws:
   region: ap-south-1
 cluster:
-  architecture: amd64
   baseDomain: sebastian-colomar.com
   cloud1: Amazon
   cloud2: AWS
