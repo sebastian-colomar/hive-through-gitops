@@ -3,7 +3,7 @@ kind: Subscription
 metadata:
   annotations:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-    argocd.argoproj.io/sync-wave: "3"
+    argocd.argoproj.io/sync-wave: "30"
   labels:
     operators.coreos.com/odf-operator.openshift-storage: ''
   name: odf-operator
