@@ -9,5 +9,6 @@ rules:
   - placementbindings
   - policies
   verbs:
+  - create
   - delete
   - patch
