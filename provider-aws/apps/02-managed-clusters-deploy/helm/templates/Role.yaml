@@ -19,6 +19,7 @@ rules:
   verbs:
   - create
   - delete
+  - patch
 - apiGroups:
   - hive.openshift.io
   resources:
