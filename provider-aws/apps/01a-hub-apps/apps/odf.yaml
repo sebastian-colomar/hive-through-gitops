@@ -12,7 +12,7 @@ spec:
   project: default
   source:
     path: provider-aws/apps/01a-hub-apps/helm/odf
-    repoURL: git@github.com:sebastian-colomar/hive-through-gitops.git
+    repoURL: https://github.com/sebastian-colomar/hive-through-gitops
     targetRevision: HEAD
   syncPolicy:
     automated:
