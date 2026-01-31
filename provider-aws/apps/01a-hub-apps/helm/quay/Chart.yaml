@@ -1,0 +1,6 @@
+apiVersion: v2
+name: quay
+description: Install Red Hat Quay
+type: application
+version: 0.0.1
+appVersion: "v1.0"
