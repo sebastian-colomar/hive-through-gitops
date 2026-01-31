@@ -5,5 +5,7 @@ metadata:
   namespace: open-cluster-management-policies
 rules:
 - apiGroups: ["policy.open-cluster-management.io"]
-  resources: ["placementbindings"]
+  resources:
+  - placementbindings
+  - policies
   verbs: ["patch"]
