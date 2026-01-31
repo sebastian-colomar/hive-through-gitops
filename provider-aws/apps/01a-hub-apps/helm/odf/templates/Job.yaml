@@ -1,0 +1,26 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: label-odf-worker-nodes
+  namespace: openshift-storage
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
+spec:
+  ttlSecondsAfterFinished: 300
+  template:
+    spec:
+      serviceAccountName: odf-node-labeler
+      restartPolicy: Never
+      containers:
+      - name: label-nodes
+        image: registry.redhat.io/openshift4/ose-cli
+        command:
+        - /bin/sh
+        - -c
+        - |
+          oc label node --selector='node-role.kubernetes.io/worker=' cluster.ocs.openshift.io/openshift-storage='' --overwrite || true
+          echo "Labeling complete (or already done)."
+        resources:
+          requests:
+            cpu: 50m
+            memory: 64Mi
