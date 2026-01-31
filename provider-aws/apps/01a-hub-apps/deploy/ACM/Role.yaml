@@ -8,4 +8,6 @@ rules:
   resources:
   - placementbindings
   - policies
-  verbs: ["patch"]
+  verbs:
+  - delete
+  - patch
