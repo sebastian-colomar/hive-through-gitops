@@ -1,0 +1,3 @@
+channel: stable-3.16
+name: quay-operator
+namespace: openshift-operators
