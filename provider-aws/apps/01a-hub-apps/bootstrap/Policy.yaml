@@ -1,7 +1,7 @@
 apiVersion: policy.open-cluster-management.io/v1
 kind: Policy
 metadata:
-  name: repo-hub-apps
+  name: hub-apps-repo
   namespace: openshift-gitops
 spec:
   disabled: false
@@ -10,7 +10,7 @@ spec:
         apiVersion: policy.open-cluster-management.io/v1
         kind: ConfigurationPolicy
         metadata:
-          name: repo-hub-apps
+          name: hub-apps-repo
         spec:
           object-templates:
             - complianceType: musthave
@@ -22,10 +22,10 @@ spec:
                     managed-by: argocd.argoproj.io
                   labels:
                     argocd.argoproj.io/secret-type: repository
-                  name: repo-hub-apps
+                  name: hub-apps-repo
                   namespace: openshift-gitops
                 stringData:
-                  name: repo-hub-apps
+                  name: hub-apps-repo
                   project: default
                   type: git
                   url: https://github.com/sebastian-colomar/hive-through-gitops
