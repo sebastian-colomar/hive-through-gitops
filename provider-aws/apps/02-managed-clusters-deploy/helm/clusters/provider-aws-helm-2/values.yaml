@@ -21,7 +21,7 @@ machinepools:
     replicas: 3
     rootVolume:
       iops: 2000
-      size: 120
+      size: 100
       type: io1
     type: t3a.large
     #type: t4g.large
