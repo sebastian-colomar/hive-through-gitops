@@ -1,7 +1,7 @@
 apiVersion: policy.open-cluster-management.io/v1
 kind: PlacementBinding
 metadata:
-  name: hub-repo-apps
+  name: hub-apps-repo
   namespace: openshift-gitops
 placementRef:
   apiGroup: cluster.open-cluster-management.io
@@ -10,4 +10,4 @@ placementRef:
 subjects:
 - apiGroup: policy.open-cluster-management.io
   kind: Policy
-  name: hub-repo-apps
+  name: hub-apps-repo
