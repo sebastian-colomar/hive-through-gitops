@@ -22,10 +22,10 @@ spec:
                     managed-by: argocd.argoproj.io
                   labels:
                     argocd.argoproj.io/secret-type: repository
-                  name: hub-apps-repo
+                  name: repo-apps-hub
                   namespace: openshift-gitops
                 stringData:
-                  name: hub-apps-repo
+                  name: hive-through-gitops
                   project: default
                   type: git
                   url: https://github.com/sebastian-colomar/hive-through-gitops
