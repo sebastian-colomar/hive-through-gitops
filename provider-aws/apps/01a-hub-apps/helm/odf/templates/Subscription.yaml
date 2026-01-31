@@ -6,7 +6,6 @@ metadata:
   name: odf-operator
   namespace: openshift-storage
 spec:
-  channel: stable-4.20
   channel: {{ .Values.channel }}
   installPlanApproval: Automatic
   name: odf-operator
