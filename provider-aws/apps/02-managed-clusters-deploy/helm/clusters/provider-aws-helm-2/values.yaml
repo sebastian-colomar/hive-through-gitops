@@ -2,10 +2,12 @@ aws:
   region: ap-south-1
 cluster:
   baseDomain: sebastian-colomar.com
+  #baseDomain: sebastian-colomar.es
   cloud1: Amazon
   cloud2: AWS
   clusterset: provider-aws-helm
-  image: img4.20.8-multi-appsub
+  image: img4.17.47-multi-appsub
+  #image: img4.20.10-multi-appsub
   name: provider-aws-helm-2
   platform: aws
   vendor: OpenShift
@@ -15,9 +17,11 @@ gitops:
 machinepools:
   - 
     name: worker
+    #replicas: 2
     replicas: 3
     rootVolume:
       iops: 2000
       size: 120
       type: io1
-    type: t4g.large
+    type: t3a.large
+    #type: t4g.large
