@@ -11,7 +11,7 @@ spec:
   source:
     directory:
       recurse: true
-    path: provider-aws/apps/01a-hub-apps/deploy
+    path: provider-aws/apps/01a-hub-apps/apps
     repoURL: https://github.com/sebastian-colomar/hive-through-gitops
     targetRevision: HEAD
   syncPolicy:
