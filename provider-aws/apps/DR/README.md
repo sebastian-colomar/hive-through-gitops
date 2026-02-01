@@ -72,7 +72,7 @@
    ```
 1. After these operations the passive hub cluster becomes the new active hub cluster.
 
-### On the original active hub cluster:
+### On the original active hub cluster (that is now passive cluster):
 
 1. Use the `restore-acm-sync` sample to restore passive data, while continuing to check if new backups are available and restore them automatically.
    To automatically restore new backups, you must set the `syncRestoreWithNewBackups` parameter to `true`.
@@ -80,8 +80,5 @@
    ```
    oc create -f restore-acm-sync.yaml
    ```
-
-# TODO:
-## Connecting clusters automatically by using a Managed Service Account 
 
    
