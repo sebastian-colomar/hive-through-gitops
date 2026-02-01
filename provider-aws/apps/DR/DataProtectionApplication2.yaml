@@ -5,7 +5,8 @@ metadata:
   namespace: open-cluster-management-backup
 spec:
   backupLocations:
-    - velero:
+    - name: default
+      velero:
         config:
           profile: default
           region: ap-south-1
@@ -14,7 +15,7 @@ spec:
           name: cloud-credentials
         default: true
         objectStorage:
-          bucket: openshift.sebastian-colomar.es
+          bucket: oadp.sebastian-colomar.es
           prefix: velero2
         provider: aws
   configuration:
@@ -27,7 +28,8 @@ spec:
         - aws
         - kubevirt
   snapshotLocations:
-    - velero:
+    - name: default
+      velero:
         config:
           profile: default
           region: ap-south-1
