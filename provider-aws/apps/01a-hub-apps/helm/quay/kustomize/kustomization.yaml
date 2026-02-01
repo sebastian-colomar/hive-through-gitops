@@ -9,4 +9,4 @@ vars:
     fieldRef:
       fieldPath: spec.baseDomain
 resources:
-  - Route.yaml
+  - route.yaml
