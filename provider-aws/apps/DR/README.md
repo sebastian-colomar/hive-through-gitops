@@ -93,5 +93,7 @@
    ```
    oc create -f restore-acm-sync.yaml
    ```
+### In order to avoid collisions:
 
+To prevent backup collisions in an active-passive RHACM hub configuration, the cleanest and most reliable approach is to create a new sequential prefix in the shared storage location every time the active hub fails over or switches to a different cluster. For example, use naming patterns such as `backups/seq-001/`, `backups/seq-002/`, or `backups/20260201-001/` to clearly separate each activation period. This ensures the newly active hub writes exclusively to a fresh, isolated prefix, completely eliminating the risk that passive hubs or a newly promoted primary might restore stale backups containing outdated or misleading timestamps from a previous active cluster. Once the new primary has successfully completed several backup cycles and its data has been validated, the previous prefix can be safely deleted or moved to archival storage, keeping the bucket tidy, reducing long-term storage costs, and guaranteeing that only current, relevant backups remain accessible for future restores.
    
