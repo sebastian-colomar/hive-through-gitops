@@ -5,7 +5,7 @@ metadata:
 subjects:
 - kind: ServiceAccount
   name: odf-node-labeler
-  namespace: openshift-storage
+  namespace: {{ .Values.namespace }}
 roleRef:
   kind: ClusterRole
   name: odf-node-labeler
