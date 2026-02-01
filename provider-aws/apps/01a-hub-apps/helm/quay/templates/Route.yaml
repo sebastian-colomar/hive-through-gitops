@@ -5,13 +5,13 @@ metadata:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
     argocd.argoproj.io/sync-wave: "50"
     haproxy.router.openshift.io/timeout: 30m
-  name: mirror-quay-internal
-  namespace: openshift-operators
+  name: {{ .Values.registry.name }}-quay-internal
+  namespace: {{ .Values.namespace }}
 spec:
-  host: mirror-quay-openshift-operators.apps-int.BASEDOMAIN
+  host: {{ .Values.registry.name }}-quay-{{ .Values.namespace }}.apps-int.BASEDOMAIN
   to:
     kind: Service
-    name: mirror-quay-app
+    name: {{ .Values.registry.name }}-quay-app
     weight: 100
   port:
     targetPort: http
