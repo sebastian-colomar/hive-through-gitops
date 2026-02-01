@@ -1,0 +1,6 @@
+apiVersion: v2
+name: odf2
+description: Install StorageCluster for OpenShift Data Foundation
+type: application
+version: 0.0.1
+appVersion: "v1.0"
