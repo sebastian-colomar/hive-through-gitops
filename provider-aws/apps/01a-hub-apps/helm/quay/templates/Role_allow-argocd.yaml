@@ -14,13 +14,6 @@ rules:
   - create
   - delete
   - patch
-- apiGroups: ["batch"]
-  resources:
-  - jobs
-  verbs:
-  - create
-  - delete
-  - patch
 - apiGroups: ["quay.redhat.com"]
   resources:
   - quayregistries
@@ -31,7 +24,6 @@ rules:
 - apiGroups: ["route.openshift.io"]
   resources:
   - routes
-  - routes/custom-host
   verbs:
   - create
   - delete
