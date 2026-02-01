@@ -10,13 +10,14 @@ metadata:
   name: {{ .Values.registry.name }}-quay-internal
   namespace: {{ .Values.namespace }}
 spec:
+  port:
+    targetPort: http
+  subdomain: {{ .Values.registry.name }}-quay
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Redirect
   to:
     kind: Service
     name: {{ .Values.registry.name }}-quay-app
     weight: 100
-  port:
-    targetPort: http
-  tls:
-    termination: edge
-    insecureEdgeTerminationPolicy: Redirect
   wildcardPolicy: None
