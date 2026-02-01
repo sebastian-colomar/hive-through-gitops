@@ -59,20 +59,20 @@
 
 ### On the passive hub cluster:
 
-1. Set the `VeleroManagedClustersBackupName` parameter to `latest`:
+1. Remove the old restore resource and create a different one:
    ```
-   oc patch restore restore-acm-sync -n open-cluster-management-backup --type=merge -p '{"spec": {"veleroManagedClustersBackupName": "latest"}}'
+   oc delete -f restore-acm-sync.yaml
+   oc create -f restore-acm-passive-activate.yaml
    ```
+   In this new restore resource, the `VeleroManagedClustersBackupName` parameter is set to `latest`.
    Immediately after the `VeleroManagedClustersBackupName` is set to `latest`, the managed clusters are activated on the passive hub cluster and is now the primary hub cluster.
    When the passive cluster becomes the primary hub cluster, the `restore` resource is set to Finished and the `syncRestoreWithNewBackups` is ignored, even if set to `true`.
    Wait until the `restore` resource is finished. Then you can delete the `restore` resource.
-1. Once finished restoring the managed clusters data and to avoid getting into a backup collision state, delete the `DataProtectionApplication` resource also on the passive hub cluster:
-   ```
-   oc delete -f DataProtectionApplication.yaml
-   ```
+1. Once finished restoring the managed clusters data and to avoid getting into a backup collision state, delete the `DataProtectionApplication` resource also on the passive hub cluster.
    Create the instance of a new `DataProtectionApplication` resource at a different storage location than the initial primary hub cluster in order to avoid collisions with the original hub cluster:
    ```
-   oc create -f DataProtectionApplication2.yaml
+   oc delete -f DataProtectionApplication.yaml
+   oc create -f DataProtectionApplication-2.yaml
    ```
 1. Schedule a cluster backup on the new primary hub cluster:
    ```
@@ -84,7 +84,8 @@
 
 1. Create the instance of the new `DataProtectionApplication` resource at a different storage location than the initial primary hub cluster in order to avoid collisions with the original hub cluster:
    ```
-   oc create -f DataProtectionApplication2.yaml
+   oc delete -f DataProtectionApplication.yaml
+   oc create -f DataProtectionApplication-2.yaml
    ```
 1. Use the `restore-acm-sync` sample to restore passive data, while continuing to check if new backups are available and restore them automatically.
    To automatically restore new backups, you must set the `syncRestoreWithNewBackups` parameter to `true`.
