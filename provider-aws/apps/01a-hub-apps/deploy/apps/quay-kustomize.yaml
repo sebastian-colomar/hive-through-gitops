@@ -4,6 +4,7 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
     argocd.argoproj.io/sync-wave: "30"
+    argocd.argoproj.io/use-helm: "false"
   name: quay-kustomize
 spec:
   destination:
