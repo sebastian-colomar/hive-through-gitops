@@ -16,7 +16,7 @@ spec:
         default: true
         objectStorage:
           bucket: oadp.sebastian-colomar.es
-          prefix: velero2
+          prefix: velero-2
         provider: aws
   configuration:
     nodeAgent:
