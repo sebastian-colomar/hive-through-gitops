@@ -69,7 +69,7 @@
    When the passive cluster becomes the primary hub cluster, the `restore` resource is set to Finished and the `syncRestoreWithNewBackups` is ignored, even if set to `true`.
    Wait until the `restore` resource is finished. Then you can delete the `restore` resource.
 1. Once finished restoring the managed clusters data and to avoid getting into a backup collision state, delete the `DataProtectionApplication` resource also on the passive hub cluster.
-   Create the instance of a new `DataProtectionApplication` resource at a different storage location than the initial primary hub cluster in order to avoid collisions with the original hub cluster:
+   Create the instance of a new `DataProtectionApplication` resource at a different storage location than the initial primary hub cluster (or same location with a different prefix) in order to avoid collisions with the original hub cluster:
    ```
    oc delete -f DataProtectionApplication.yaml
    oc create -f DataProtectionApplication-2.yaml
@@ -82,7 +82,7 @@
 
 ### On the original active hub cluster (that is now passive cluster):
 
-1. Create the instance of the new `DataProtectionApplication` resource at a different storage location than the initial primary hub cluster in order to avoid collisions with the original hub cluster:
+1. Create the instance of the new `DataProtectionApplication` resource at a different storage location than the initial primary hub cluster (or same location with a different prefix) in order to avoid collisions with the original hub cluster:
    ```
    oc delete -f DataProtectionApplication.yaml
    oc create -f DataProtectionApplication-2.yaml
