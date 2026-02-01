@@ -65,7 +65,7 @@
    ```
    Immediately after the `VeleroManagedClustersBackupName` is set to `latest`, the managed clusters are activated on the passive hub cluster and is now the primary hub cluster.
    When the passive cluster becomes the primary hub cluster, the `restore` resource is set to Finished and the `syncRestoreWithNewBackups` is ignored, even if set to `true`.
-   Wait until the `restore` resource is finished.
+   Wait until the `restore` resource is finished. Then you can delete the `restore` resource.
 1. Schedule a cluster backup on the new primary hub cluster:
    ```
    oc create -f BackupSchedule.yaml
