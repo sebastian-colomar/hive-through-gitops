@@ -1,0 +1,30 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: patch-{{ .Values.registry.name }}-quay-route
+  namespace: {{ .Values.namespace }}
+  annotations:
+    argocd.argoproj.io/sync-wave: "60"
+spec:
+  template:
+    spec:
+      serviceAccountName: route-patcher
+      restartPolicy: Never
+      containers:
+      - name: patcher
+        image: registry.redhat.io/openshift4/ose-cli
+        command:
+        - /bin/sh
+        - -c
+        - |
+          set -e
+          BASEDOMAIN=$(oc get dns cluster -o jsonpath='{.spec.baseDomain}')
+          FULL_HOST="{{ .Values.registry.name }}-quay-{{ .Values.namespace }}.apps-int.${BASEDOMAIN}"
+          
+          oc patch route {{ .Values.registry.name }}-quay-internal -n {{ .Values.namespace }} --type=json -p="[{\"op\":\"replace\",\"path\":\"/spec/host\",\"value\":\"${FULL_HOST}\"}]"
+          
+          echo "Route patched with host: ${FULL_HOST}"
+        resources:
+          requests:
+            cpu: 50m
+            memory: 64Mi
