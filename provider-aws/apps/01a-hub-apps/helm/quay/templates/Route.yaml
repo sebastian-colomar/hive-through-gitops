@@ -5,10 +5,11 @@ metadata:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
     argocd.argoproj.io/sync-wave: "50"
     haproxy.router.openshift.io/timeout: 30m
+  labels:
+    ingress-type: internal
   name: {{ .Values.registry.name }}-quay-internal
   namespace: {{ .Values.namespace }}
 spec:
-  #host: {{ .Values.registry.name }}-quay-{{ .Values.namespace }}.apps-int.basedomain
   to:
     kind: Service
     name: {{ .Values.registry.name }}-quay-app
