@@ -2,11 +2,13 @@ apiVersion: route.openshift.io/v1
 kind: Route
 metadata:
   annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    argocd.argoproj.io/sync-wave: "50"
     haproxy.router.openshift.io/timeout: 30m
   name: mirror-quay
   namespace: openshift-operators
 spec:
-  host: mirror-quay-openshift-operators.apps-int.$(BASEDOMAIN)
+  host: mirror-quay-openshift-operators.apps-int.BASEDOMAIN
   to:
     kind: Service
     name: mirror-quay-app
