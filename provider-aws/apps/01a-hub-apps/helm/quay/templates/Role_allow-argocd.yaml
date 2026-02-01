@@ -21,3 +21,10 @@ rules:
   - create
   - delete
   - patch
+- apiGroups: ["route.openshift.io"]
+  resources:
+  - routes
+  verbs:
+  - create
+  - delete
+  - patch
