@@ -7,6 +7,13 @@ metadata:
   name: allow-argocd
   namespace: {{ .Values.namespace }}
 rules:
+- apiGroups: [""]
+  resources:
+  - serviceaccounts
+  verbs:
+  - create
+  - delete
+  - patch
 - apiGroups: ["quay.redhat.com"]
   resources:
   - quayregistries
