@@ -21,7 +21,7 @@ spec:
     cephObjectStoreUsers: {}
     cephCluster: {}
     cephBlockPools:
-      defaultStorageClass: false
+      defaultStorageClass: {{ .Values.cephBlockPools.defaultStorageClass }}
     cephNonResilientPools: {}
     cephObjectStores: {}
     cephFilesystems: {}
