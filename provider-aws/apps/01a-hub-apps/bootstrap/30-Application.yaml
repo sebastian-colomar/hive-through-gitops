@@ -11,6 +11,7 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
+    kustomize: {}
     path: provider-aws/apps/01a-hub-apps/deploy
     repoURL: https://github.com/sebastian-colomar/hive-through-gitops
     targetRevision: HEAD
