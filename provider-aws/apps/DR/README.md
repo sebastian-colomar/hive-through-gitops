@@ -67,13 +67,12 @@
    In this new restore resource, the `VeleroManagedClustersBackupName` parameter is set to `latest`.
    Immediately after the `VeleroManagedClustersBackupName` is set to `latest`, the managed clusters are activated on the passive hub cluster and is now the primary hub cluster.
    When the passive cluster becomes the primary hub cluster, the `restore` resource is set to Finished and the `syncRestoreWithNewBackups` is ignored, even if set to `true`.
-   Wait until the `restore` resource is finished. Then you can delete the `restore` resource.
-1. Once finished restoring the managed clusters data and to avoid getting into a backup collision state, delete the `DataProtectionApplication` resource also on the passive hub cluster.
-   Create the instance of a new `DataProtectionApplication` resource at a different storage location than the initial primary hub cluster (or same location with a different prefix) in order to avoid collisions with the original hub cluster:
+   Wait until the `restore` resource is finished.
+
+   ONLY AFTER THE RESTORATION IS FINISHED, you can delete the `restore` resource.
    ```
-   oc delete -f DataProtectionApplication.yaml
-   oc create -f DataProtectionApplication-2.yaml
-   ```
+   oc delete -f restore-acm-passive-activate.yaml
+   ```   
 1. Schedule a cluster backup on the new primary hub cluster:
    ```
    oc create -f BackupSchedule.yaml
@@ -82,18 +81,14 @@
 
 ### On the original active hub cluster (that is now passive cluster):
 
-1. Create the instance of the new `DataProtectionApplication` resource at a different storage location than the initial primary hub cluster (or same location with a different prefix) in order to avoid collisions with the original hub cluster:
+1. Create the instance of the new `DataProtectionApplication` if it is still not there:
    ```
-   oc delete -f DataProtectionApplication.yaml
-   oc create -f DataProtectionApplication-2.yaml
+   oc create -f DataProtectionApplication.yaml
    ```
 1. Use the `restore-acm-sync` sample to restore passive data, while continuing to check if new backups are available and restore them automatically.
    To automatically restore new backups, you must set the `syncRestoreWithNewBackups` parameter to `true`.
    You must also only restore the latest passive data.
+   Do not start the restore synchronization too early (before there are new backups from the new primary hub cluster already uploaded in the backup location), in order to avoid collisions with the original primary hub cluster:
    ```
    oc create -f restore-acm-sync.yaml
    ```
-### In order to avoid collisions:
-
-To prevent backup collisions in an active-passive RHACM hub configuration, the cleanest and most reliable approach is to create a new sequential prefix in the shared storage location every time the active hub fails over or switches to a different cluster. For example, use naming patterns such as `backups/seq-001/`, `backups/seq-002/`, or `backups/20260201-001/` to clearly separate each activation period. This ensures the newly active hub writes exclusively to a fresh, isolated prefix, completely eliminating the risk that passive hubs or a newly promoted primary might restore stale backups containing outdated or misleading timestamps from a previous active cluster. Once the new primary has successfully completed several backup cycles and its data has been validated, the previous prefix can be safely deleted or moved to archival storage, keeping the bucket tidy, reducing long-term storage costs, and guaranteeing that only current, relevant backups remain accessible for future restores.
-   
