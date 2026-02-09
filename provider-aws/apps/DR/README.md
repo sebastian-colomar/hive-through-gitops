@@ -1,3 +1,8 @@
+# DISCLAIMER
+The following material is reproduced from the referenced guides and is provided exclusively for educational and training purposes.
+It is provided on an "as-is" basis, without any express or implied warranties, and no responsibility is assumed for its accuracy, completeness, or applicability to any particular use.
+
+---
 # Configuring active-passive hub cluster
 
 ## Procedure
