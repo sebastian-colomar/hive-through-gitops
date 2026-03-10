@@ -44,11 +44,11 @@ It is provided on an "as-is" basis, without any express or implied warranties, a
 
 ### On the passive hub cluster:
 
-1. Use the `restore-acm-sync` sample to restore passive data, while continuing to check if new backups are available and restore them automatically.
+1. Use the `restore-acm-passive-sync` sample to restore passive data, while continuing to check if new backups are available and restore them automatically.
    To automatically restore new backups, you must set the `syncRestoreWithNewBackups` parameter to `true`.
    You must also only restore the latest passive data.
    ```
-   oc create -f restore-acm-sync.yaml
+   oc create -f restore-acm-passive-sync.yaml
    ```
 
 # Manual failover to the passive cluster
@@ -66,7 +66,7 @@ It is provided on an "as-is" basis, without any express or implied warranties, a
 
 1. Remove the old restore resource and create a different one:
    ```
-   oc delete -f restore-acm-sync.yaml
+   oc delete -f restore-acm-passive-sync.yaml
    oc create -f restore-acm-passive-activate.yaml
    ```
    In this new restore resource, the `VeleroManagedClustersBackupName` parameter is set to `latest`.
