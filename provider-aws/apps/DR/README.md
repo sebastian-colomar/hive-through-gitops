@@ -95,5 +95,5 @@ It is provided on an "as-is" basis, without any express or implied warranties, a
    You must also only restore the latest passive data.
    Do not start the restore synchronization too early (before there are new backups from the new primary hub cluster already uploaded in the backup location), in order to avoid collisions with the original primary hub cluster:
    ```
-   oc create -f restore-acm-sync.yaml
+   oc create -f restore-acm-passive-sync.yaml
    ```
